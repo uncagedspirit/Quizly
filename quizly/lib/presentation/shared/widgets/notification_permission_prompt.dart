@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../core/extensions/context_extensions.dart';
-import '../core/theme/tokens.dart';
-import '../presentation/shared/widgets/primary_button.dart';
+import '../../../core/extensions/context_extensions.dart';
+import '../../../core/theme/tokens.dart';
+import 'primary_button.dart';
 
-class NotificationPermissionPrompt extends StatelessWidget {
-  final VoidCallback onEnable;
-  final VoidCallback onMaybeLater;
-
-  const NotificationPermissionPrompt({
-    super.key,
-    required this.onEnable,
-    required this.onMaybeLater,
-  });
+class NotificationPermissionPrompt {
+  NotificationPermissionPrompt._();
 
   static Future<bool?> show(BuildContext context) {
     return showDialog<bool>(

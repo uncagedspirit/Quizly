@@ -10,7 +10,9 @@ import '../../shared/widgets/confirm_dialog.dart';
 import '../../../core/router/route_names.dart';
 
 class AttemptQuestionScreen extends StatefulWidget {
-  const AttemptQuestionScreen({super.key});
+  const AttemptQuestionScreen({super.key, required this.attemptId});
+
+  final String attemptId;
 
   @override
   State<AttemptQuestionScreen> createState() => _AttemptQuestionScreenState();

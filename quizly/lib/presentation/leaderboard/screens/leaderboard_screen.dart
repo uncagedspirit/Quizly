@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/stat_pill.dart';
-import '../../shared/widgets/tag_chip.dart';
 
 class LeaderboardScreen extends StatelessWidget {
-  const LeaderboardScreen({super.key});
+  const LeaderboardScreen({super.key, required this.quizId});
+
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class LeaderboardScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(),
+            _buildTopBar(context, colors),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
               child: Column(
@@ -40,20 +42,24 @@ class LeaderboardScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
                     itemCount: 30,
-                    separatorBuilder: (_, __) => const SizedBox(height: QzSpacing.s2),
-                    itemBuilder: (context, index) {
+                    separatorBuilder: (_, __) =>
+                        const SizedBox(height: QzSpacing.s2),
+                    itemBuilder: (ctx, index) {
                       final rank = index + 1;
-                      final names = [
+                      const names = [
                         'Priya S.', 'Rohit K.', 'Simran D.', 'You', 'Amit P.',
-                        'Neha G.', 'Vikram R.', 'Sanya M.', 'Karan B.', 'Anju T.',
-                        'Deepak K.', 'Meera J.', 'Ravi S.', 'Lata M.', 'Arun V.',
-                        'Sneha P.', 'Mohan L.', 'Pooja R.', 'Rajesh G.', 'Kavita D.',
-                        'Suresh T.', 'Anita K.', 'Dinesh P.', 'Rekha S.', 'Manoj V.',
-                        'Geeta N.', 'Prakash B.', 'Leela R.', 'Hari O.', 'Uma J.',
+                        'Neha G.', 'Vikram R.', 'Sanya M.', 'Karan B.',
+                        'Anju T.', 'Deepak K.', 'Meera J.', 'Ravi S.',
+                        'Lata M.', 'Arun V.', 'Sneha P.', 'Mohan L.',
+                        'Pooja R.', 'Rajesh G.', 'Kavita D.', 'Suresh T.',
+                        'Anita K.', 'Dinesh P.', 'Rekha S.', 'Manoj V.',
+                        'Geeta N.', 'Prakash B.', 'Leela R.', 'Hari O.',
+                        'Uma J.',
                       ];
-                      final scores = [
+                      const scores = [
                         '10/10', '9/10', '8/10', '8/10', '7/10',
                         '7/10', '7/10', '6/10', '6/10', '6/10',
                         '5/10', '5/10', '5/10', '4/10', '4/10',
@@ -61,7 +67,7 @@ class LeaderboardScreen extends StatelessWidget {
                         '2/10', '2/10', '1/10', '1/10', '1/10',
                         '1/10', '0/10', '0/10', '0/10', '0/10',
                       ];
-                      final times = [
+                      const times = [
                         '1m 42s', '2m 05s', '1m 58s', '2m 14s', '2m 40s',
                         '3m 10s', '3m 30s', '2m 50s', '3m 00s', '3m 20s',
                         '4m 10s', '4m 30s', '3m 50s', '4m 00s', '4m 20s',
@@ -78,13 +84,12 @@ class LeaderboardScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  if (true)
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: _buildStickyFooter(),
-                    ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: _buildStickyFooter(context, colors),
+                  ),
                 ],
               ),
             ),
@@ -94,9 +99,7 @@ class LeaderboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s7),
       child: SizedBox(
@@ -105,10 +108,10 @@ class LeaderboardScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: SizedBox(
+              child: const SizedBox(
                 width: 36,
                 height: 36,
-                child: Icon(Icons.arrow_back, size: 20, color: colors.ink),
+                child: Icon(Icons.arrow_back, size: 20),
               ),
             ),
             const SizedBox(width: QzSpacing.s5),
@@ -122,9 +125,7 @@ class LeaderboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStickyFooter() {
-    final colors = context.colors;
-
+  Widget _buildStickyFooter(BuildContext context, QzTheme colors) {
     return Container(
       padding: const EdgeInsets.all(QzSpacing.s5),
       margin: const EdgeInsets.only(
@@ -138,7 +139,6 @@ class LeaderboardScreen extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: colors.ink,
-            spreadRadius: 0,
             blurRadius: 0,
             offset: const Offset(0, 0),
           ),

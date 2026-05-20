@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
@@ -17,8 +18,7 @@ class QuizlyApp extends ConsumerStatefulWidget {
 }
 
 class _QuizlyAppState extends ConsumerState<QuizlyApp> {
-  StreamSubscription? _foregroundSub;
-  StreamSubscription? _backgroundSub;
+  StreamSubscription<dynamic>? _backgroundSub;
 
   @override
   void initState() {
@@ -28,7 +28,6 @@ class _QuizlyAppState extends ConsumerState<QuizlyApp> {
 
   @override
   void dispose() {
-    _foregroundSub?.cancel();
     _backgroundSub?.cancel();
     super.dispose();
   }
@@ -36,30 +35,25 @@ class _QuizlyAppState extends ConsumerState<QuizlyApp> {
   void _setupFcmHandlers() {
     final notificationRepo = ref.read(notificationRepositoryProvider);
 
-    notificationRepo.getInitialMessage().then((msg) {
-      if (msg != null) {
+    notificationRepo.getInitialMessage().then((dynamic msg) {
+      if (msg != null && mounted) {
         final router = ref.read(appRouterProvider);
         NotificationRouter.handleRemoteMessage(
-          Map<String, dynamic>.from(msg.data),
+          Map<String, dynamic>.from(msg.data as Map),
           router,
         );
       }
     });
 
-    _backgroundSub = notificationRepo.onMessageOpenedApp.listen((msg) {
-      final router = ref.read(appRouterProvider);
-      NotificationRouter.handleRemoteMessage(
-        Map<String, dynamic>.from(msg.data),
-        router,
-      );
-    });
-
-    notificationRepo.onMessageOpenedApp.listen((msg) {
-      final router = ref.read(appRouterProvider);
-      NotificationRouter.handleRemoteMessage(
-        Map<String, dynamic>.from(msg.data),
-        router,
-      );
+    _backgroundSub =
+        notificationRepo.onMessageOpenedApp.listen((dynamic msg) {
+      if (mounted) {
+        final router = ref.read(appRouterProvider);
+        NotificationRouter.handleRemoteMessage(
+          Map<String, dynamic>.from(msg.data as Map),
+          router,
+        );
+      }
     });
   }
 
@@ -77,7 +71,6 @@ class _QuizlyAppState extends ConsumerState<QuizlyApp> {
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return FcmForegroundListener(
-          notificationRepo: ref.read(notificationRepositoryProvider),
           router: router,
           child: child ?? const SizedBox.shrink(),
         );
@@ -86,29 +79,30 @@ class _QuizlyAppState extends ConsumerState<QuizlyApp> {
   }
 }
 
-class FcmForegroundListener extends StatefulWidget {
-  final dynamic notificationRepo;
-  final dynamic router;
+class FcmForegroundListener extends ConsumerStatefulWidget {
+  final GoRouter router;
   final Widget child;
 
   const FcmForegroundListener({
     super.key,
-    required this.notificationRepo,
     required this.router,
     required this.child,
   });
 
   @override
-  State<FcmForegroundListener> createState() => _FcmForegroundListenerState();
+  ConsumerState<FcmForegroundListener> createState() =>
+      _FcmForegroundListenerState();
 }
 
-class _FcmForegroundListenerState extends State<FcmForegroundListener> {
-  StreamSubscription? _sub;
+class _FcmForegroundListenerState
+    extends ConsumerState<FcmForegroundListener> {
+  StreamSubscription<dynamic>? _sub;
 
   @override
   void initState() {
     super.initState();
-    _sub = widget.notificationRepo.onForegroundMessage.listen((msg) {
+    final notificationRepo = ref.read(notificationRepositoryProvider);
+    _sub = notificationRepo.onForegroundMessage.listen((dynamic msg) {
       _showBanner(msg);
     });
   }
@@ -130,12 +124,12 @@ class _FcmForegroundListenerState extends State<FcmForegroundListener> {
         left: 0,
         right: 0,
         child: InAppNotificationBanner(
-          title: notification.title ?? '',
-          body: notification.body ?? '',
+          title: (notification?.title ?? '') as String,
+          body: (notification?.body ?? '') as String,
           onTap: () {
             entry?.remove();
             NotificationRouter.handleRemoteMessage(
-              Map<String, dynamic>.from(message.data),
+              Map<String, dynamic>.from(message.data as Map),
               widget.router,
             );
           },
@@ -143,7 +137,7 @@ class _FcmForegroundListenerState extends State<FcmForegroundListener> {
       ),
     );
 
-    Overlay.of(context).insert(entry);
+    Overlay.of(context).insert(entry!);
     Future.delayed(const Duration(seconds: 4), () => entry?.remove());
   }
 

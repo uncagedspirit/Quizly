@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/tag_chip.dart';
 import '../../shared/widgets/quiz_card.dart';
 
 class ChallengeIntroScreen extends StatelessWidget {
-  const ChallengeIntroScreen({super.key});
+  const ChallengeIntroScreen({super.key, required this.challengeId});
+
+  final String challengeId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class ChallengeIntroScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
           child: Column(
             children: [
-              _buildTopBar(),
+              _buildTopBar(context, colors),
               const Spacer(),
               Column(
                 children: [
@@ -40,7 +43,7 @@ class ChallengeIntroScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: QzSpacing.s11),
-                  _buildQuizInfoCard(),
+                  _buildQuizInfoCard(context, colors),
                 ],
               ),
               const Spacer(),
@@ -57,9 +60,7 @@ class ChallengeIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return SizedBox(
       height: 52,
       child: Row(
@@ -77,9 +78,7 @@ class ChallengeIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizInfoCard() {
-    final colors = context.colors;
-
+  Widget _buildQuizInfoCard(BuildContext context, QzTheme colors) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(QzSpacing.s9),

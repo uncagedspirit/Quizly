@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/stat_pill.dart';
 import '../../shared/widgets/option_tile.dart';
 
 class AttemptResultScreen extends StatelessWidget {
-  const AttemptResultScreen({super.key});
+  const AttemptResultScreen({super.key, required this.attemptId});
+
+  final String attemptId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,25 +37,25 @@ class AttemptResultScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(),
+            _buildTopBar(context, colors),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _buildHeroBand(bandColor, emoji, score, total),
+                    _buildHeroBand(context, colors, bandColor, emoji, score, total),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: QzSpacing.s9),
-                          _buildStatPills(),
+                          _buildStatPills(context, colors),
                           const SizedBox(height: QzSpacing.s9),
-                          _buildMiniLeaderboard(),
+                          _buildMiniLeaderboard(context, colors),
                           const SizedBox(height: QzSpacing.s5),
-                          _buildSeeFullLeaderboard(),
+                          _buildSeeFullLeaderboard(context, colors),
                           const SizedBox(height: QzSpacing.s9),
-                          _buildQuestionBreakdown(),
+                          _buildQuestionBreakdown(context, colors),
                           const SizedBox(height: QzSpacing.s13),
                         ],
                       ),
@@ -61,16 +64,14 @@ class AttemptResultScreen extends StatelessWidget {
                 ),
               ),
             ),
-            _buildBottomRow(),
+            _buildBottomRow(context, colors),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s7),
       child: SizedBox(
@@ -91,9 +92,7 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeroBand(Color bandColor, String emoji, int score, int total) {
-    final colors = context.colors;
-
+  Widget _buildHeroBand(BuildContext context, QzTheme colors, Color bandColor, String emoji, int score, int total) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: QzSpacing.s13),
@@ -121,7 +120,7 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatPills() {
+  Widget _buildStatPills(BuildContext context, QzTheme colors) {
     return Row(
       children: const [
         Expanded(child: StatPill(value: '8', label: 'Correct')),
@@ -135,9 +134,7 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMiniLeaderboard() {
-    final colors = context.colors;
-
+  Widget _buildMiniLeaderboard(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -146,18 +143,17 @@ class AttemptResultScreen extends StatelessWidget {
           style: context.text.headingSm.copyWith(color: colors.ink),
         ),
         const SizedBox(height: QzSpacing.s5),
-        _buildMiniRow(1, 'Priya', '10/10', '1m 42s'),
-        _buildMiniRow(2, 'Rohit', '9/10', '2m 05s'),
-        _buildMiniRow(3, 'Simran', '8/10', '1m 58s'),
-        _buildMiniRow(4, 'You', '8/10', '2m 14s', isMe: true),
-        _buildMiniRow(5, 'Amit', '7/10', '2m 40s'),
+        _buildMiniRow(context, colors, 1, 'Priya', '10/10', '1m 42s'),
+        _buildMiniRow(context, colors, 2, 'Rohit', '9/10', '2m 05s'),
+        _buildMiniRow(context, colors, 3, 'Simran', '8/10', '1m 58s'),
+        _buildMiniRow(context, colors, 4, 'You', '8/10', '2m 14s', isMe: true),
+        _buildMiniRow(context, colors, 5, 'Amit', '7/10', '2m 40s'),
       ],
     );
   }
 
-  Widget _buildMiniRow(int rank, String name, String score, String time,
+  Widget _buildMiniRow(BuildContext context, QzTheme colors, int rank, String name, String score, String time,
       {bool isMe = false}) {
-    final colors = context.colors;
     final avatarColor = [
       const Color(0xFFF1A791),
       const Color(0xFFF9E761),
@@ -246,21 +242,19 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSeeFullLeaderboard() {
+  Widget _buildSeeFullLeaderboard(BuildContext context, QzTheme colors) {
     return Center(
       child: GestureDetector(
         onTap: () {},
         child: Text(
           'See full leaderboard',
-          style: context.text.bodyMd.copyWith(color: context.colors.brand),
+          style: context.text.bodyMd.copyWith(color: colors.brand),
         ),
       ),
     );
   }
 
-  Widget _buildQuestionBreakdown() {
-    final colors = context.colors;
-
+  Widget _buildQuestionBreakdown(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -269,16 +263,14 @@ class AttemptResultScreen extends StatelessWidget {
           style: context.text.headingSm.copyWith(color: colors.ink),
         ),
         const SizedBox(height: QzSpacing.s5),
-        _buildQRow(0, 'What is the capital of France?', true),
-        _buildQRow(1, 'What is 2+2?', true),
-        _buildQRow(2, 'Who wrote Romeo and Juliet?', false),
+        _buildQRow(context, colors, 0, 'What is the capital of France?', true),
+        _buildQRow(context, colors, 1, 'What is 2+2?', true),
+        _buildQRow(context, colors, 2, 'Who wrote Romeo and Juliet?', false),
       ],
     );
   }
 
-  Widget _buildQRow(int index, String question, bool isCorrect) {
-    final colors = context.colors;
-
+  Widget _buildQRow(BuildContext context, QzTheme colors, int index, String question, bool isCorrect) {
     return Container(
       padding: const EdgeInsets.all(QzSpacing.s5),
       margin: const EdgeInsets.only(bottom: QzSpacing.s3),
@@ -316,9 +308,7 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomRow() {
-    final colors = context.colors;
-
+  Widget _buildBottomRow(BuildContext context, QzTheme colors) {
     return Container(
       padding: EdgeInsets.only(
         left: QzSpacing.s9,

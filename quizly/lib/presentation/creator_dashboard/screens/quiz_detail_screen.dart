@@ -3,13 +3,15 @@ import 'package:flutter/services.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
-import '../../shared/widgets/primary_button.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/stat_pill.dart';
 import '../../shared/widgets/tag_chip.dart';
 import '../../shared/widgets/confirm_dialog.dart';
 
 class QuizDetailScreen extends StatelessWidget {
-  const QuizDetailScreen({super.key});
+  const QuizDetailScreen({super.key, required this.quizId});
+
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class QuizDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(),
+            _buildTopBar(context, colors),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
@@ -29,15 +31,15 @@ class QuizDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: QzSpacing.s5),
-                    _buildCodeShareRow(code),
+                    _buildCodeShareRow(context, colors, code),
                     const SizedBox(height: QzSpacing.s9),
                     _buildStatsRow(),
                     const SizedBox(height: QzSpacing.s9),
-                    _buildHardestQuestion(),
+                    _buildHardestQuestion(context, colors),
                     const SizedBox(height: QzSpacing.s9),
-                    _buildMiniLeaderboard(),
+                    _buildMiniLeaderboard(context, colors),
                     const SizedBox(height: QzSpacing.s9),
-                    _buildDangerZone(),
+                    _buildDangerZone(context, colors),
                     const SizedBox(height: QzSpacing.s13),
                   ],
                 ),
@@ -49,9 +51,7 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s7),
       child: SizedBox(
@@ -60,10 +60,10 @@ class QuizDetailScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: SizedBox(
+              child: const SizedBox(
                 width: 36,
                 height: 36,
-                child: Icon(Icons.arrow_back, size: 20, color: colors.ink),
+                child: Icon(Icons.arrow_back, size: 20),
               ),
             ),
             const SizedBox(width: QzSpacing.s5),
@@ -77,10 +77,10 @@ class QuizDetailScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {},
-              child: SizedBox(
+              child: const SizedBox(
                 width: 36,
                 height: 36,
-                child: Icon(Icons.more_vert, size: 20, color: colors.ink),
+                child: Icon(Icons.more_vert, size: 20),
               ),
             ),
           ],
@@ -89,9 +89,8 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCodeShareRow(String code) {
-    final colors = context.colors;
-
+  Widget _buildCodeShareRow(
+      BuildContext context, QzTheme colors, String code) {
     return Row(
       children: [
         Expanded(
@@ -117,7 +116,6 @@ class QuizDetailScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: colors.line,
-                    spreadRadius: 0,
                     blurRadius: 0,
                     offset: const Offset(0, 1),
                   ),
@@ -149,7 +147,6 @@ class QuizDetailScreen extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: colors.line,
-                  spreadRadius: 0,
                   blurRadius: 0,
                   offset: const Offset(0, 1),
                 ),
@@ -176,9 +173,7 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHardestQuestion() {
-    final colors = context.colors;
-
+  Widget _buildHardestQuestion(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -195,7 +190,6 @@ class QuizDetailScreen extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: colors.line,
-                spreadRadius: 0,
                 blurRadius: 0,
                 offset: const Offset(0, 1),
               ),
@@ -209,10 +203,8 @@ class QuizDetailScreen extends StatelessWidget {
                 style: context.text.bodyMd.copyWith(color: colors.ink),
               ),
               const SizedBox(height: QzSpacing.s5),
-              Row(
-                children: const [
-                  TagChip(label: 'Only 12% correct'),
-                ],
+              const Row(
+                children: [TagChip(label: 'Only 12% correct')],
               ),
             ],
           ),
@@ -221,9 +213,7 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMiniLeaderboard() {
-    final colors = context.colors;
-
+  Widget _buildMiniLeaderboard(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -244,24 +234,24 @@ class QuizDetailScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(height: QzSpacing.s5),
-        _buildLeaderRow(1, 'Priya S.', '10/10', '1m 42s'),
-        _buildLeaderRow(2, 'Rohit K.', '9/10', '2m 05s'),
-        _buildLeaderRow(3, 'Simran D.', '8/10', '1m 58s'),
-        _buildLeaderRow(4, 'Amit P.', '7/10', '2m 40s'),
-        _buildLeaderRow(5, 'Neha G.', '7/10', '3m 10s'),
+        _buildLeaderRow(context, colors, 1, 'Priya S.', '10/10', '1m 42s'),
+        _buildLeaderRow(context, colors, 2, 'Rohit K.', '9/10', '2m 05s'),
+        _buildLeaderRow(context, colors, 3, 'Simran D.', '8/10', '1m 58s'),
+        _buildLeaderRow(context, colors, 4, 'Amit P.', '7/10', '2m 40s'),
+        _buildLeaderRow(context, colors, 5, 'Neha G.', '7/10', '3m 10s'),
       ],
     );
   }
 
-  Widget _buildLeaderRow(int rank, String name, String score, String time) {
-    final colors = context.colors;
-    final avatarColor = [
-      const Color(0xFFF1A791),
-      const Color(0xFFF9E761),
-      const Color(0xFFE2A50F),
-      const Color(0xFF506834),
-      const Color(0xFFD77204),
-    ][(name.hashCode.abs()) % 5];
+  Widget _buildLeaderRow(BuildContext context, QzTheme colors, int rank,
+      String name, String score, String time) {
+    final avatarColor = const [
+      Color(0xFFF1A791),
+      Color(0xFFF9E761),
+      Color(0xFFE2A50F),
+      Color(0xFF506834),
+      Color(0xFFD77204),
+    ][name.hashCode.abs() % 5];
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -321,11 +311,10 @@ class QuizDetailScreen extends StatelessWidget {
           const SizedBox(width: QzSpacing.s5),
           Text(
             score,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'Geist',
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: colors.ink,
             ),
           ),
         ],
@@ -333,9 +322,7 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDangerZone() {
-    final colors = context.colors;
-
+  Widget _buildDangerZone(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -350,7 +337,6 @@ class QuizDetailScreen extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: colors.wrong.withAlpha(40),
-                spreadRadius: 0,
                 blurRadius: 0,
                 offset: const Offset(0, -1.5),
               ),
@@ -358,13 +344,16 @@ class QuizDetailScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              _buildDangerAction('Edit Quiz', Icons.edit_outlined, () {}),
-              _buildDangerAction('Close Quiz', Icons.lock_outline, () {}),
-              _buildDangerAction('Delete Quiz', Icons.delete_outline, () {
+              _buildDangerAction(context, colors, 'Edit Quiz',
+                  Icons.edit_outlined, () {}),
+              _buildDangerAction(context, colors, 'Close Quiz',
+                  Icons.lock_outline, () {}),
+              _buildDangerAction(context, colors, 'Delete Quiz',
+                  Icons.delete_outline, () {
                 showConfirmDialog(
                   context,
                   title: 'Delete Quiz?',
-                  body: 'This action cannot be undone. All data will be permanently lost.',
+                  body: 'This action cannot be undone.',
                   confirmLabel: 'Delete',
                   isDestructive: true,
                 );
@@ -376,9 +365,8 @@ class QuizDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDangerAction(String label, IconData icon, VoidCallback onTap) {
-    final colors = context.colors;
-
+  Widget _buildDangerAction(BuildContext context, QzTheme colors,
+      String label, IconData icon, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

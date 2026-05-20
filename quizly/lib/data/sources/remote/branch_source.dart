@@ -76,7 +76,7 @@ class BranchSource {
     );
 
     if (response.success && response.result != null) {
-      return response.result!;
+      return response.result as String;
     }
     throw Exception('Failed to generate link');
   }
@@ -111,7 +111,7 @@ class BranchSource {
     );
 
     if (response.success && response.result != null) {
-      return response.result!;
+      return response.result as String;
     }
     throw Exception('Failed to generate challenge link');
   }

@@ -228,7 +228,7 @@ final localAttemptSourceProvider = Provider<LocalAttemptSource>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LocalAttemptSourceRef = ProviderRef<LocalAttemptSource>;
-String _$authRepositoryHash() => r'957d3c4ca4e88b77f30f7ac02efeb368cfc1823c';
+String _$authRepositoryHash() => r'943c55661e4f50a239ac2b23f4e2602a973224b0';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)

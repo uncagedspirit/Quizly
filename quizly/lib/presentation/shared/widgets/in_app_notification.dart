@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/theme/tokens.dart';
-import '../../core/extensions/context_extensions.dart';
+import '../../../core/theme/tokens.dart';
+import '../../../core/extensions/context_extensions.dart';
 
 class InAppNotificationBanner extends StatefulWidget {
   final String title;
@@ -45,7 +46,11 @@ class _InAppNotificationBannerState extends State<InAppNotificationBanner>
     _controller.forward();
 
     Timer(const Duration(seconds: 4), () {
-      if (mounted) _controller.reverse().then((_) => mounted ? Navigator.maybePop(context) : null);
+      if (mounted) {
+        _controller.reverse().then((_) {
+          if (mounted) Navigator.maybePop(context);
+        });
+      }
     });
   }
 
@@ -110,9 +115,7 @@ class NotificationRouter {
   static void handleTap(String? payload, GoRouter router) {
     if (payload == null) return;
     try {
-      final data = Map<String, dynamic>.from(
-        const JsonDecoder().convert(payload) as Map,
-      );
+      final data = jsonDecode(payload) as Map<String, dynamic>;
       final type = data['type'] as String?;
       switch (type) {
         case 'deadline_reveal':

@@ -7,7 +7,9 @@ import '../../shared/controllers/app_providers.dart';
 
 part 'auth_controller.g.dart';
 
-sealed class AuthState {}
+sealed class AuthState {
+  const AuthState();
+}
 
 class AuthAuthenticated extends AuthState {
   final AppUser user;

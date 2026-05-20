@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class QzTextStyles {
-  const QzTextStyles._();
+  const QzTextStyles();
 
   static const _fontFamily = 'Geist';
   static const _monoFamily = 'JetBrainsMono';

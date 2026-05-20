@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 
 class QuizPublishedScreen extends StatelessWidget {
-  const QuizPublishedScreen({super.key});
+  const QuizPublishedScreen({super.key, required this.quizId});
+
+  final String quizId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class QuizPublishedScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
           child: Column(
             children: [
-              _buildTopBar(),
+              _buildTopBar(context, colors),
               const Spacer(),
               Column(
                 children: [
@@ -113,9 +116,7 @@ class QuizPublishedScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return SizedBox(
       height: 52,
       child: Row(

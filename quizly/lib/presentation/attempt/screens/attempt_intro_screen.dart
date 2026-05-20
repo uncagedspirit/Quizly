@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/app_text_field.dart';
 import '../../shared/widgets/tag_chip.dart';
 
 class AttemptIntroScreen extends StatelessWidget {
-  const AttemptIntroScreen({super.key});
+  const AttemptIntroScreen({super.key, required this.code});
+
+  final String code;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class AttemptIntroScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopBar(),
+            _buildTopBar(context, colors),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
@@ -26,27 +29,25 @@ class AttemptIntroScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: QzSpacing.s9),
-                    _buildQuizInfoCard(),
+                    _buildQuizInfoCard(context, colors),
                     const SizedBox(height: QzSpacing.s9),
-                    _buildCreatedBy(),
+                    _buildCreatedBy(context, colors),
                     const SizedBox(height: QzSpacing.s9),
-                    _buildNameInput(),
+                    _buildNameInput(context, colors),
                     const SizedBox(height: QzSpacing.s7),
-                    _buildDeadlineCountdown(),
+                    _buildDeadlineCountdown(context, colors),
                   ],
                 ),
               ),
             ),
-            _buildBottomButton(),
+            _buildBottomButton(context, colors),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildTopBar() {
-    final colors = context.colors;
-
+  Widget _buildTopBar(BuildContext context, QzTheme colors) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s7),
       child: SizedBox(
@@ -67,9 +68,7 @@ class AttemptIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuizInfoCard() {
-    final colors = context.colors;
-
+  Widget _buildQuizInfoCard(BuildContext context, QzTheme colors) {
     return Container(
       padding: const EdgeInsets.all(QzSpacing.s9),
       decoration: BoxDecoration(
@@ -116,9 +115,7 @@ class AttemptIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCreatedBy() {
-    final colors = context.colors;
-
+  Widget _buildCreatedBy(BuildContext context, QzTheme colors) {
     return Row(
       children: [
         Container(
@@ -148,9 +145,7 @@ class AttemptIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNameInput() {
-    final colors = context.colors;
-
+  Widget _buildNameInput(BuildContext context, QzTheme colors) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -167,9 +162,7 @@ class AttemptIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDeadlineCountdown() {
-    final colors = context.colors;
-
+  Widget _buildDeadlineCountdown(BuildContext context, QzTheme colors) {
     return Row(
       children: [
         Icon(Icons.access_time, size: 16, color: colors.warm),
@@ -182,9 +175,7 @@ class AttemptIntroScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomButton() {
-    final colors = context.colors;
-
+  Widget _buildBottomButton(BuildContext context, QzTheme colors) {
     return Container(
       padding: EdgeInsets.only(
         left: QzSpacing.s9,

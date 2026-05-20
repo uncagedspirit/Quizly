@@ -1,24 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../data/sources/remote/firebase_auth_source.dart';
-import '../../data/sources/remote/firestore_quiz_source.dart';
-import '../../data/sources/remote/firestore_attempt_source.dart';
-import '../../data/sources/remote/firestore_user_source.dart';
-import '../../data/sources/remote/fcm_source.dart';
-import '../../data/sources/remote/branch_source.dart';
-import '../../data/sources/local/local_user_source.dart';
-import '../../data/sources/local/local_quiz_source.dart';
-import '../../data/sources/local/local_attempt_source.dart';
-import '../../data/repositories/auth_repository.dart';
-import '../../data/repositories/quiz_repository.dart';
-import '../../data/repositories/attempt_repository.dart';
-import '../../data/repositories/user_repository.dart';
-import '../../data/repositories/notification_repository.dart';
-import '../../data/repositories/deeplink_repository.dart';
-import '../../core/constants/app_constants.dart';
+import '../../../data/sources/remote/firebase_auth_source.dart';
+import '../../../data/sources/remote/firestore_quiz_source.dart';
+import '../../../data/sources/remote/firestore_attempt_source.dart';
+import '../../../data/sources/remote/firestore_user_source.dart';
+import '../../../data/sources/remote/fcm_source.dart';
+import '../../../data/sources/remote/branch_source.dart';
+import '../../../data/sources/local/local_user_source.dart';
+import '../../../data/sources/local/local_quiz_source.dart';
+import '../../../data/sources/local/local_attempt_source.dart';
+import '../../../data/repositories/auth_repository.dart';
+import '../../../data/repositories/quiz_repository.dart';
+import '../../../data/repositories/attempt_repository.dart';
+import '../../../data/repositories/user_repository.dart';
+import '../../../data/repositories/notification_repository.dart';
+import '../../../data/repositories/deeplink_repository.dart';
+import '../../../core/constants/app_constants.dart';
+import 'hive_providers.dart';
 
 part 'app_providers.g.dart';
 

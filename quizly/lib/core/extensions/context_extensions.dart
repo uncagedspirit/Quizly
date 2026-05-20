@@ -8,5 +8,5 @@ extension BuildContextExtensions on BuildContext {
 }
 
 extension TextStylesOnContext on BuildContext {
-  QzTextStyles get text => const QzTextStyles._();
+  QzTextStyles get text => const QzTextStyles();
 }
