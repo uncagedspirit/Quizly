@@ -35,7 +35,6 @@ dependencies:
   hive_flutter: ^1.1.0
 
   # Models
-  freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
 
   # Networking utility
@@ -64,6 +63,7 @@ dependencies:
   intl: ^0.19.0
   collection: ^1.18.0
   equatable: ^2.0.5
+  freezed_annotation: 3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +72,6 @@ dev_dependencies:
 
   # Codegen
   build_runner: ^2.4.13
-  freezed: ^2.5.7
   json_serializable: ^6.8.0
   riverpod_generator: ^2.4.3
   custom_lint: ^0.7.3
@@ -80,6 +79,7 @@ dev_dependencies:
 
   # Testing
   mocktail: ^1.0.4
+  freezed: 3.0.0
 
 flutter:
   uses-material-design: true
