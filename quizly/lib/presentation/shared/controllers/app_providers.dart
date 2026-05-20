@@ -104,6 +104,7 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
     ref.watch(firebaseAuthSourceProvider),
     ref.watch(firestoreUserSourceProvider),
     ref.watch(localUserSourceProvider),
+    ref.watch(firestoreProvider),
   );
 }
 
