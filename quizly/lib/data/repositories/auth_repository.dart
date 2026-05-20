@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../domain/models/app_user.dart';
-import '../../sources/remote/firebase_auth_source.dart';
-import '../../sources/remote/firestore_user_source.dart';
-import '../../sources/local/local_user_source.dart';
+import '../sources/remote/firebase_auth_source.dart';
+import '../sources/remote/firestore_user_source.dart';
+import '../sources/local/local_user_source.dart';
 
 class AuthRepository {
   AuthRepository(

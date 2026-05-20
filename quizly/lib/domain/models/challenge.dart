@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'challenge.freezed.dart';
 part 'challenge.g.dart';
 
-@freezed
+@Freezed()
 class Challenge with _$Challenge {
   const factory Challenge({
     required String id,

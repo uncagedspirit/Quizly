@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'leaderboard_entry.freezed.dart';
 part 'leaderboard_entry.g.dart';
 
-@freezed
+@Freezed()
 class LeaderboardEntry with _$LeaderboardEntry {
   const factory LeaderboardEntry({
     required String attemptId,

@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../domain/models/quiz.dart';
 import '../../../domain/models/question.dart';
+import '../../../domain/enums/quiz_status.dart';
+import '../../../domain/enums/question_type.dart';
+import '../../../domain/enums/reveal_mode.dart';
 
 class QuizDto {
   QuizDto._();

@@ -5,7 +5,7 @@ import '../enums/question_type.dart';
 part 'question.freezed.dart';
 part 'question.g.dart';
 
-@freezed
+@Freezed()
 class Question with _$Question {
   const factory Question({
     required String id,

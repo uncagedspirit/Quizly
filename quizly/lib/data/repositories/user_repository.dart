@@ -1,5 +1,5 @@
 import '../../../domain/models/app_user.dart';
-import '../../sources/remote/firestore_user_source.dart';
+import '../sources/remote/firestore_user_source.dart';
 
 class UserRepository {
   UserRepository(this._remoteSource);

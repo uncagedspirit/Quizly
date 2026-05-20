@@ -1,4 +1,4 @@
-import '../../sources/remote/branch_source.dart';
+import '../sources/remote/branch_source.dart';
 
 class DeeplinkRepository {
   DeeplinkRepository(this._branchSource);

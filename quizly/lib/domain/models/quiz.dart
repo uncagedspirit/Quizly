@@ -7,7 +7,7 @@ import '../enums/reveal_mode.dart';
 part 'quiz.freezed.dart';
 part 'quiz.g.dart';
 
-@freezed
+@Freezed()
 class Quiz with _$Quiz {
   const factory Quiz({
     required String id,
@@ -29,7 +29,7 @@ class Quiz with _$Quiz {
   factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
 }
 
-@freezed
+@Freezed()
 class QuizSettings with _$QuizSettings {
   const factory QuizSettings({
     @Default(false) bool allowAnonymous,
@@ -42,7 +42,7 @@ class QuizSettings with _$QuizSettings {
       _$QuizSettingsFromJson(json);
 }
 
-@freezed
+@Freezed()
 class QuizStats with _$QuizStats {
   const factory QuizStats({
     @Default(0) int attemptCount,

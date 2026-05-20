@@ -1,7 +1,7 @@
 import '../../../domain/models/quiz.dart';
 import '../../../domain/models/question.dart';
-import '../../sources/remote/firestore_quiz_source.dart';
-import '../../sources/local/local_quiz_source.dart';
+import '../sources/remote/firestore_quiz_source.dart';
+import '../sources/local/local_quiz_source.dart';
 
 class QuizRepository {
   QuizRepository(this._remoteSource, this._localSource);

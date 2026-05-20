@@ -1,4 +1,4 @@
-import '../../sources/remote/fcm_source.dart';
+import '../sources/remote/fcm_source.dart';
 
 class NotificationRepository {
   NotificationRepository(this._fcmSource);

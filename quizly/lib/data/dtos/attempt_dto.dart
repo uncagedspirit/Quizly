@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../domain/models/attempt.dart';
+import '../../../domain/enums/attempt_status.dart';
 
 class AttemptDto {
   AttemptDto._();

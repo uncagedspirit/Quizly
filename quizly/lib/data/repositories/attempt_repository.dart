@@ -1,7 +1,7 @@
 import '../../../domain/models/attempt.dart';
 import '../../../domain/models/leaderboard_entry.dart';
-import '../../sources/remote/firestore_attempt_source.dart';
-import '../../sources/local/local_attempt_source.dart';
+import '../sources/remote/firestore_attempt_source.dart';
+import '../sources/local/local_attempt_source.dart';
 
 class AttemptRepository {
   AttemptRepository(this._remoteSource, this._localSource);

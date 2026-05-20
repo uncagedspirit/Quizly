@@ -4,6 +4,7 @@ import '../../../core/utils/code_generator.dart';
 import '../../../core/errors/app_exception.dart';
 import '../../../domain/models/quiz.dart';
 import '../../../domain/models/question.dart';
+import '../../../domain/enums/quiz_status.dart';
 import '../../../data/repositories/quiz_repository.dart';
 
 class CreateQuizUseCase {

@@ -1,6 +1,7 @@
 import '../../../core/utils/result_calculator.dart';
 import '../../../domain/models/attempt.dart';
 import '../../../domain/models/quiz.dart';
+import '../../../domain/enums/attempt_status.dart';
 import '../../../data/repositories/attempt_repository.dart';
 import '../../../data/repositories/quiz_repository.dart';
 

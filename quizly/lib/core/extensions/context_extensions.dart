@@ -5,5 +5,8 @@ import '../theme/app_text_styles.dart';
 
 extension BuildContextExtensions on BuildContext {
   QzTheme get colors => Theme.of(this).extension<QzTheme>()!;
-  QzTextStyles get text => QzTextStyles();
+}
+
+extension TextStylesOnContext on BuildContext {
+  QzTextStyles get text => const QzTextStyles._();
 }

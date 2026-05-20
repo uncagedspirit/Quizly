@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-void main() {
+import 'firebase_options.dart';
+import 'data/sources/local/hive_init.dart';
+import 'app.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+  await HiveInit.init();
+
   runApp(const ProviderScope(child: QuizlyApp()));
-}
-
-class QuizlyApp extends StatelessWidget {
-  const QuizlyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Quizly',
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      home: const PlaceholderHome(),
-    );
-  }
-}
-
-class PlaceholderHome extends StatelessWidget {
-  const PlaceholderHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Quizly')),
-      body: const Center(child: Text('Setup complete.')),
-    );
-  }
 }

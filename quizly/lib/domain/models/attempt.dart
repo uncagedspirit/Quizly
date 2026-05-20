@@ -5,7 +5,7 @@ import '../enums/attempt_status.dart';
 part 'attempt.freezed.dart';
 part 'attempt.g.dart';
 
-@freezed
+@Freezed()
 class Attempt with _$Attempt {
   const factory Attempt({
     required String id,
@@ -28,7 +28,7 @@ class Attempt with _$Attempt {
       _$AttemptFromJson(json);
 }
 
-@freezed
+@Freezed()
 class Answer with _$Answer {
   const factory Answer({
     required String questionId,
@@ -40,7 +40,7 @@ class Answer with _$Answer {
   factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
 }
 
-@freezed
+@Freezed()
 class AttemptScore with _$AttemptScore {
   const factory AttemptScore({
     required int correct,

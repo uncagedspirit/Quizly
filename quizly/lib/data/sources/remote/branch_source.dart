@@ -5,7 +5,9 @@ import 'package:flutter/foundation.dart';
 
 import '../../../domain/models/challenge.dart';
 
-sealed class DeeplinkData {}
+sealed class DeeplinkData {
+  const DeeplinkData();
+}
 
 class QuizLink extends DeeplinkData {
   final String code;
@@ -25,10 +27,7 @@ class BranchSource {
   Stream<DeeplinkData> get linkStream => _linkController.stream;
 
   Future<void> init() async {
-    await FlutterBranchSdk.init(
-      enableLogging: kDebugMode,
-      disableTracking: false,
-    );
+    await FlutterBranchSdk.init(enableLogging: kDebugMode);
 
     _subscription = FlutterBranchSdk.listSession().listen(
       _onLinkReceived,
@@ -76,8 +75,8 @@ class BranchSource {
       linkProperties: lp,
     );
 
-    if (response.success) {
-      return response.result;
+    if (response.success && response.result != null) {
+      return response.result!;
     }
     throw Exception('Failed to generate link');
   }
@@ -111,8 +110,8 @@ class BranchSource {
       linkProperties: lp,
     );
 
-    if (response.success) {
-      return response.result;
+    if (response.success && response.result != null) {
+      return response.result!;
     }
     throw Exception('Failed to generate challenge link');
   }
