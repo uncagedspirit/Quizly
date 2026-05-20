@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
+import '../../shared/controllers/connectivity_controller.dart';
 import '../../shared/widgets/code_input_field.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   int _tabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final isOnline = ref.watch(connectivityControllerProvider).valueOrNull ?? true;
 
     return Scaffold(
       backgroundColor: colors.paper,
@@ -26,6 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (!isOnline)
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: QzSpacing.s2,
+                  ),
+                  color: colors.wrong.withAlpha(30),
+                  child: Text(
+                    "You're offline",
+                    textAlign: TextAlign.center,
+                    style: context.text.bodySm.copyWith(color: colors.wrong),
+                  ),
+                ),
               const SizedBox(height: QzSpacing.s6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
