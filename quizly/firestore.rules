@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ───── helpers ─────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+    function isQuizCreator(quizId) {
+      return isSignedIn() &&
+             get(/databases/$(database)/documents/quizzes/$(quizId)).data.creatorId == request.auth.uid;
+    }
+
+    // ───── users ─────
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid);
+      allow delete: if false;
+    }
+
+    // ───── quizzes ─────
+    match /quizzes/{quizId} {
+      allow read: if true;
+      allow create: if isSignedIn()
+                    && request.resource.data.creatorId == request.auth.uid
+                    && request.resource.data.code is string
+                    && request.resource.data.code.size() == 6;
+      allow update: if isQuizCreator(quizId)
+                    && request.resource.data.creatorId == resource.data.creatorId
+                    && request.resource.data.code == resource.data.code;
+      allow delete: if isQuizCreator(quizId);
+
+      match /questions/{questionId} {
+        allow read: if true;
+        allow write: if isQuizCreator(quizId);
+      }
+    }
+
+    // ───── attempts ─────
+    match /attempts/{attemptId} {
+      allow read: if true;
+      allow create: if
+        request.resource.data.deviceId is string &&
+        request.resource.data.quizId is string;
+      allow update: if
+        (resource.data.attempterId != null && resource.data.attempterId == request.auth.uid) ||
+        (resource.data.deviceId == request.resource.data.deviceId);
+      allow delete: if false;
+    }
+
+    // ───── challenges ─────
+    match /challenges/{challengeId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update: if
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['acceptedBy']);
+      allow delete: if false;
+    }
+
+    // ───── reports ─────
+    match /reports/{reportId} {
+      allow read: if false;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    // ───── device_tokens ─────
+    match /device_tokens/{deviceId} {
+      allow read, write: if true;
+    }
+  }
+}
