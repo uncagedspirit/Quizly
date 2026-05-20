@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'firebase_options.dart';
 import 'data/sources/local/hive_init.dart';
+import 'data/sources/remote/fcm_source.dart';
 import 'app.dart';
 
 Future<void> main() async {
@@ -17,6 +18,8 @@ Future<void> main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   await HiveInit.init();
+
+  FcmSource.registerBackgroundHandler();
 
   runApp(const ProviderScope(child: QuizlyApp()));
 }
