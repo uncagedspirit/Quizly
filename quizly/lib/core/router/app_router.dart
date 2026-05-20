@@ -4,12 +4,19 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../presentation/shared/controllers/auth_controller.dart';
 import '../../presentation/shared/controllers/theme_controller.dart';
-import '../../presentation/shared/controllers/connectivity_controller.dart';
 import '../../presentation/auth/screens/splash_screen.dart';
 import '../../presentation/auth/screens/login_screen.dart';
 import '../../presentation/auth/screens/signup_screen.dart';
 import '../../presentation/home/screens/home_screen.dart';
-import '../../core/theme/app_theme.dart';
+import '../../presentation/create_quiz/screens/create_quiz_screen.dart';
+import '../../presentation/create_quiz/screens/add_question_screen.dart';
+import '../../presentation/create_quiz/screens/quiz_published_screen.dart';
+import '../../presentation/creator_dashboard/screens/quiz_detail_screen.dart';
+import '../../presentation/leaderboard/screens/leaderboard_screen.dart';
+import '../../presentation/attempt/screens/attempt_intro_screen.dart';
+import '../../presentation/attempt/screens/attempt_question_screen.dart';
+import '../../presentation/attempt/screens/attempt_result_screen.dart';
+import '../../presentation/challenge/screens/challenge_intro_screen.dart';
 import 'route_names.dart';
 
 part 'app_router.g.dart';
@@ -17,7 +24,6 @@ part 'app_router.g.dart';
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
   final authState = ref.watch(authStateChangesProvider);
-  final themeMode = ref.watch(themeControllerProvider);
 
   return GoRouter(
     initialLocation: RouteNames.splash,
@@ -45,10 +51,6 @@ GoRouter appRouter(AppRouterRef ref) {
         builder: (_, __) => const SplashScreen(),
       ),
       GoRoute(
-        path: RouteNames.onboarding,
-        builder: (_, __) => const PlaceholderScreen(title: 'Onboarding'),
-      ),
-      GoRoute(
         path: RouteNames.login,
         builder: (_, __) => const LoginScreen(),
       ),
@@ -62,67 +64,54 @@ GoRouter appRouter(AppRouterRef ref) {
       ),
       GoRoute(
         path: RouteNames.createQuiz,
-        builder: (_, __) => const PlaceholderScreen(title: 'Create Quiz'),
+        builder: (_, __) => const CreateQuizScreen(),
       ),
       GoRoute(
         path: '/quiz/create/question',
-        builder: (_, __) => const PlaceholderScreen(title: 'Add Question'),
+        builder: (_, __) => const AddQuestionScreen(),
       ),
       GoRoute(
         path: '/quiz/published/:quizId',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Quiz Published: ${state.pathParameters['quizId']}',
+        builder: (_, state) => QuizPublishedScreen(
+          quizId: state.pathParameters['quizId'] ?? '',
         ),
       ),
       GoRoute(
         path: '/quiz/:quizId',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Quiz Detail: ${state.pathParameters['quizId']}',
+        builder: (_, state) => QuizDetailScreen(
+          quizId: state.pathParameters['quizId'] ?? '',
         ),
       ),
       GoRoute(
         path: '/quiz/:quizId/leaderboard',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Leaderboard: ${state.pathParameters['quizId']}',
+        builder: (_, state) => LeaderboardScreen(
+          quizId: state.pathParameters['quizId'] ?? '',
         ),
       ),
       GoRoute(
         path: '/attempt/intro/:code',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Attempt: ${state.pathParameters['code']}',
+        builder: (_, state) => AttemptIntroScreen(
+          code: state.pathParameters['code'] ?? '',
         ),
       ),
       GoRoute(
         path: '/attempt/quiz/:attemptId',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Question: ${state.pathParameters['attemptId']}',
+        builder: (_, state) => AttemptQuestionScreen(
+          attemptId: state.pathParameters['attemptId'] ?? '',
         ),
       ),
       GoRoute(
         path: '/attempt/result/:attemptId',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Result: ${state.pathParameters['attemptId']}',
+        builder: (_, state) => AttemptResultScreen(
+          attemptId: state.pathParameters['attemptId'] ?? '',
         ),
       ),
       GoRoute(
         path: '/challenge/:challengeId',
-        builder: (_, state) => PlaceholderScreen(
-          title: 'Challenge: ${state.pathParameters['challengeId']}',
+        builder: (_, state) => ChallengeIntroScreen(
+          challengeId: state.pathParameters['challengeId'] ?? '',
         ),
       ),
     ],
   );
-}
-
-class PlaceholderScreen extends StatelessWidget {
-  final String title;
-  const PlaceholderScreen({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: const Center(child: Text('Coming soon')),
-    );
-  }
 }

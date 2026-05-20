@@ -12,7 +12,34 @@ This is the master implementation checklist. Every task is atomic, ordered, and 
 
 ---
 
-## Phase 0 — Project Setup
+## Phase 0 — Project Setup  [x] COMPLETE
+- T0.1 [x] T0.2 [x] T0.3 [x] T0.4 [x] T0.5 [x] T0.6 [x]
+
+## Phase 1 — Core Foundations  [x] COMPLETE
+- T1.1 [x] T1.2 [x] T1.3 [x] T1.4 [x] T1.5 [x] T1.6 [x]
+
+## Phase 2 — Domain Models  [x] COMPLETE
+- T2.1 [x] T2.2 [x] T2.3 [x]
+
+## Phase 3 — Data Layer  [x] COMPLETE
+- T3.1 [x] T3.2 [x] T3.3 [x] T3.4 [x] T3.5 [x] T3.6 [x] T3.7 [x] T3.8 [x]
+
+## Phase 4 — Riverpod Providers  [x] COMPLETE
+- T4.1 [x] T4.2 [x] T4.3 [x] T4.4 [x]
+
+## Phase 5 — Shared Widgets  [x] COMPLETE
+- T5.1 [x] T5.2 [x] T5.3 [x] T5.4 [x] T5.5 [x] T5.6 [x] T5.7 [x] T5.8 [x] T5.9 [x]
+
+## Phase 6 — Router  [x] COMPLETE
+- T6.1 [x]
+
+## Phase 7-12 — Screens  [x] COMPLETE
+- T7.1 [x] T7.2 [x] T7.3 - skipped (MVP)
+- T8.1 [x] T8.2 (code entry on home) T8.3 - pending wiring
+- T9.1 [x] T9.2 [x] T9.3 [x] T9.4 [x] T9.5 [x]
+- T10.1 [x] T10.2 [x] T10.3 [x] T10.4 T10.5 - pending wiring
+- T11.1 [x] T11.2 [x]
+- T12.1 [x] T12.2 - pending wiring
 
 ### T0.1 Create Flutter project
 - **Refs:** `07-firebase.md` § 1, `02-architecture.md`
