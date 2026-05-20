@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../presentation/shared/controllers/auth_controller.dart';
 import '../../presentation/shared/controllers/theme_controller.dart';
 import '../../presentation/auth/screens/splash_screen.dart';
@@ -48,70 +47,171 @@ GoRouter appRouter(AppRouterRef ref) {
     routes: [
       GoRoute(
         path: RouteNames.splash,
-        builder: (_, __) => const SplashScreen(),
+        pageBuilder: (_, __) => const NoTransitionPage(
+          child: SplashScreen(),
+        ),
       ),
       GoRoute(
         path: RouteNames.login,
-        builder: (_, __) => const LoginScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const LoginScreen(),
+          transitionsBuilder: _fadeTransition,
+          transitionDuration: const Duration(milliseconds: 250),
+        ),
       ),
       GoRoute(
         path: RouteNames.signup,
-        builder: (_, __) => const SignupScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SignupScreen(),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
+        ),
       ),
       GoRoute(
         path: RouteNames.home,
-        builder: (_, __) => const HomeScreen(),
+        pageBuilder: (_, __) => const NoTransitionPage(
+          child: HomeScreen(),
+        ),
       ),
       GoRoute(
         path: RouteNames.createQuiz,
-        builder: (_, __) => const CreateQuizScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const CreateQuizScreen(),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
+        ),
       ),
       GoRoute(
         path: '/quiz/create/question',
-        builder: (_, __) => const AddQuestionScreen(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const AddQuestionScreen(),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
+        ),
       ),
       GoRoute(
         path: '/quiz/published/:quizId',
-        builder: (_, state) => QuizPublishedScreen(
-          quizId: state.pathParameters['quizId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: QuizPublishedScreen(
+            quizId: state.pathParameters['quizId'] ?? '',
+          ),
+          transitionsBuilder: _fadeUpTransition,
+          transitionDuration: const Duration(milliseconds: 280),
         ),
       ),
       GoRoute(
         path: '/quiz/:quizId',
-        builder: (_, state) => QuizDetailScreen(
-          quizId: state.pathParameters['quizId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: QuizDetailScreen(
+            quizId: state.pathParameters['quizId'] ?? '',
+          ),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
         ),
       ),
       GoRoute(
         path: '/quiz/:quizId/leaderboard',
-        builder: (_, state) => LeaderboardScreen(
-          quizId: state.pathParameters['quizId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: LeaderboardScreen(
+            quizId: state.pathParameters['quizId'] ?? '',
+          ),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
         ),
       ),
       GoRoute(
         path: '/attempt/intro/:code',
-        builder: (_, state) => AttemptIntroScreen(
-          code: state.pathParameters['code'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: AttemptIntroScreen(
+            code: state.pathParameters['code'] ?? '',
+          ),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
         ),
       ),
       GoRoute(
         path: '/attempt/quiz/:attemptId',
-        builder: (_, state) => AttemptQuestionScreen(
-          attemptId: state.pathParameters['attemptId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: AttemptQuestionScreen(
+            attemptId: state.pathParameters['attemptId'] ?? '',
+          ),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
         ),
       ),
       GoRoute(
         path: '/attempt/result/:attemptId',
-        builder: (_, state) => AttemptResultScreen(
-          attemptId: state.pathParameters['attemptId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: AttemptResultScreen(
+            attemptId: state.pathParameters['attemptId'] ?? '',
+          ),
+          transitionsBuilder: _slideTransition,
+          transitionDuration: const Duration(milliseconds: 320),
         ),
       ),
       GoRoute(
         path: '/challenge/:challengeId',
-        builder: (_, state) => ChallengeIntroScreen(
-          challengeId: state.pathParameters['challengeId'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: ChallengeIntroScreen(
+            challengeId: state.pathParameters['challengeId'] ?? '',
+          ),
+          transitionsBuilder: _fadeUpTransition,
+          transitionDuration: const Duration(milliseconds: 280),
         ),
       ),
     ],
+  );
+}
+
+Widget _slideTransition(BuildContext context, Animation<double> animation,
+    Animation<double> secondaryAnimation, Widget child) {
+  return SlideTransition(
+    position: Tween<Offset>(
+      begin: const Offset(1, 0),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: animation,
+      curve: const Cubic(0, 0, 0.2, 1),
+    )),
+    child: child,
+  );
+}
+
+Widget _fadeTransition(BuildContext context, Animation<double> animation,
+    Animation<double> secondaryAnimation, Widget child) {
+  return FadeTransition(
+    opacity: CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeIn,
+    ),
+    child: child,
+  );
+}
+
+Widget _fadeUpTransition(BuildContext context, Animation<double> animation,
+    Animation<double> secondaryAnimation, Widget child) {
+  return SlideTransition(
+    position: Tween<Offset>(
+      begin: const Offset(0, 0.05),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeOut,
+    )),
+    child: FadeTransition(
+      opacity: animation,
+      child: child,
+    ),
   );
 }
