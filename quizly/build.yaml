@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      riverpod_generator:
+        options:
+          provider_name_suffix: "Provider"
+      freezed:
+        options:
+          format: false
+      json_serializable:
+        options:
+          create_to_json: true
+          field_rename: snake

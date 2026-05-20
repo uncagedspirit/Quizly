@@ -1,0 +1,106 @@
+name: quizly
+description: Quizly mobile app
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_messaging: ^15.1.3
+  firebase_analytics: ^11.3.3
+  firebase_crashlytics: ^4.1.3
+  firebase_storage: ^12.3.3
+
+  # Auth
+  google_sign_in: ^6.2.1
+
+  # State management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Routing
+  go_router: ^14.2.7
+
+  # Local storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Models
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # Networking utility
+  uuid: ^4.5.1
+  connectivity_plus: ^6.0.5
+
+  # Deep links
+  flutter_branch_sdk: ^8.4.0
+
+  # UI utilities  
+  material_symbols_icons: ^4.2785.1
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+  shimmer: ^3.0.0
+
+  # Sharing
+  share_plus: ^10.0.2
+  screenshot: ^3.0.0
+  path_provider: ^2.1.4
+
+  # Local notifications
+  flutter_local_notifications: ^17.2.3
+  timezone: ^0.9.4
+
+  # Utils
+  intl: ^0.19.0
+  collection: ^1.18.0
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # Codegen
+  build_runner: ^2.4.13
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+  riverpod_generator: ^2.4.3
+  custom_lint: ^0.7.3
+  riverpod_lint: ^2.3.13
+
+  # Testing
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Geist
+      fonts:
+        - asset: assets/fonts/Geist-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Geist-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Geist-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Geist-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Geist-ExtraBold.otf
+          weight: 800
+    - family: JetBrainsMono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/JetBrainsMono-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/JetBrainsMono-Bold.ttf
+          weight: 700
