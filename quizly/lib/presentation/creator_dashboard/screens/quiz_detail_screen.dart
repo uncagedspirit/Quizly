@@ -60,10 +60,10 @@ class QuizDetailScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 36,
                 height: 36,
-                child: Icon(Icons.arrow_back, size: 20),
+                child: Icon(Icons.arrow_back, size: 20, color: colors.ink),
               ),
             ),
             const SizedBox(width: QzSpacing.s5),
@@ -77,10 +77,10 @@ class QuizDetailScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {},
-              child: const SizedBox(
+              child: SizedBox(
                 width: 36,
                 height: 36,
-                child: Icon(Icons.more_vert, size: 20),
+                child: Icon(Icons.more_vert, size: 20, color: colors.ink),
               ),
             ),
           ],
@@ -311,7 +311,92 @@ class QuizDetailScreen extends StatelessWidget {
           const SizedBox(width: QzSpacing.s5),
           Text(
             score,
-            style: const TextStyle(
+            style: TextStyle(
+              fontFamily: 'Geist',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: colors.ink,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDangerZone(BuildContext context, QzTheme colors) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Danger Zone',
+          style: context.text.headingSm.copyWith(color: colors.wrong),
+        ),
+        const SizedBox(height: QzSpacing.s5),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(QzRadius.lg),
+            boxShadow: [
+              BoxShadow(
+                color: colors.wrong.withAlpha(40),
+                blurRadius: 0,
+                offset: const Offset(0, -1.5),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              _buildDangerAction(context, colors, 'Edit Quiz',
+                  Icons.edit_outlined, () {}),
+              _buildDangerAction(context, colors, 'Close Quiz',
+                  Icons.lock_outline, () {}),
+              _buildDangerAction(context, colors, 'Delete Quiz',
+                  Icons.delete_outline, () {
+                showConfirmDialog(
+                  context,
+                  title: 'Delete Quiz?',
+                  body: 'This action cannot be undone.',
+                  confirmLabel: 'Delete',
+                  isDestructive: true,
+                );
+              }),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDangerAction(BuildContext context, QzTheme colors,
+      String label, IconData icon, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: QzSpacing.s6,
+          horizontal: QzSpacing.s7,
+        ),
+        decoration: BoxDecoration(
+          color: colors.card,
+          border: Border(
+            bottom: BorderSide(color: colors.line, width: 1),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: 18, color: colors.ink2),
+            const SizedBox(width: QzSpacing.s5),
+            Text(
+              label,
+              style: context.text.bodyMd.copyWith(color: colors.ink),
+            ),
+            const Spacer(),
+            Icon(Icons.chevron_right, size: 18, color: colors.ink3),
+          ],
+        ),
+      ),
+    );
+  }
+}Style(
               fontFamily: 'Geist',
               fontSize: 16,
               fontWeight: FontWeight.w600,
