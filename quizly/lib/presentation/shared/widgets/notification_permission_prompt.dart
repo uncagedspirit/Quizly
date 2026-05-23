@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
-import 'primary_button.dart';
 
 class NotificationPermissionPrompt {
   NotificationPermissionPrompt._();

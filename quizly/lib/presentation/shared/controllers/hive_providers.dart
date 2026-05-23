@@ -6,26 +6,26 @@ import '../../../data/sources/local/hive_init.dart';
 part 'hive_providers.g.dart';
 
 @Riverpod(keepAlive: true)
-Box appStateBox(AppStateBoxRef ref) {
+Box<dynamic> appStateBox(AppStateBoxRef ref) {
   return Hive.box(HiveInit.appStateBox);
 }
 
 @Riverpod(keepAlive: true)
-Box guestAttemptsBox(GuestAttemptsBoxRef ref) {
+Box<dynamic> guestAttemptsBox(GuestAttemptsBoxRef ref) {
   return Hive.box(HiveInit.guestAttemptsBox);
 }
 
 @Riverpod(keepAlive: true)
-Box quizCacheBox(QuizCacheBoxRef ref) {
+Box<dynamic> quizCacheBox(QuizCacheBoxRef ref) {
   return Hive.box(HiveInit.quizCacheBox);
 }
 
 @Riverpod(keepAlive: true)
-Box quizDraftsBox(QuizDraftsBoxRef ref) {
+Box<dynamic> quizDraftsBox(QuizDraftsBoxRef ref) {
   return Hive.box(HiveInit.quizDraftsBox);
 }
 
 @Riverpod(keepAlive: true)
-Box pendingSubmissionsBox(PendingSubmissionsBoxRef ref) {
+Box<dynamic> pendingSubmissionsBox(PendingSubmissionsBoxRef ref) {
   return Hive.box(HiveInit.pendingSubmissionsBox);
 }

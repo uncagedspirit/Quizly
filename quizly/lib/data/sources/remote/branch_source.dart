@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../domain/models/challenge.dart';
-
 sealed class DeeplinkData {
   const DeeplinkData();
 }
@@ -21,7 +19,7 @@ class ChallengeLink extends DeeplinkData {
 }
 
 class BranchSource {
-  StreamSubscription<Map>? _subscription;
+  StreamSubscription<Map<dynamic, dynamic>>? _subscription;
   final _linkController = StreamController<DeeplinkData>.broadcast();
 
   Stream<DeeplinkData> get linkStream => _linkController.stream;
@@ -31,7 +29,7 @@ class BranchSource {
 
     _subscription = FlutterBranchSdk.listSession().listen(
       _onLinkReceived,
-      onError: (e) => debugPrint('Branch error: $e'),
+      onError: (Object e) => debugPrint('Branch error: $e'),
     );
   }
 
@@ -45,7 +43,7 @@ class BranchSource {
           _linkController.add(ChallengeLink(
             challengeId: data['challengeId'] as String,
             quizId: data['quizId'] as String,
-          ));
+          ),);
       }
     }
   }

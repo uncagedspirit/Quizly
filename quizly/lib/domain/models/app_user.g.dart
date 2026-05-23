@@ -6,7 +6,8 @@ part of 'app_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AppUser _$AppUserFromJson(Map<String, dynamic> json) => _AppUser(
+_$AppUserImpl _$$AppUserImplFromJson(Map<String, dynamic> json) =>
+    _$AppUserImpl(
       uid: json['uid'] as String,
       email: json['email'] as String,
       displayName: json['display_name'] as String?,
@@ -22,14 +23,15 @@ _AppUser _$AppUserFromJson(Map<String, dynamic> json) => _AppUser(
       preferences: json['preferences'] == null
           ? const AppUserPreferences()
           : AppUserPreferences.fromJson(
-              json['preferences'] as Map<String, dynamic>),
+              json['preferences'] as Map<String, dynamic>,),
       fcmTokens: (json['fcm_tokens'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],
     );
 
-Map<String, dynamic> _$AppUserToJson(_AppUser instance) => <String, dynamic>{
+Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
+    <String, dynamic>{
       'uid': instance.uid,
       'email': instance.email,
       'display_name': instance.displayName,
@@ -41,13 +43,15 @@ Map<String, dynamic> _$AppUserToJson(_AppUser instance) => <String, dynamic>{
       'fcm_tokens': instance.fcmTokens,
     };
 
-_AppUserPreferences _$AppUserPreferencesFromJson(Map<String, dynamic> json) =>
-    _AppUserPreferences(
+_$AppUserPreferencesImpl _$$AppUserPreferencesImplFromJson(
+        Map<String, dynamic> json,) =>
+    _$AppUserPreferencesImpl(
       theme: json['theme'] as String? ?? 'system',
       notifyOnAttempt: json['notify_on_attempt'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$AppUserPreferencesToJson(_AppUserPreferences instance) =>
+Map<String, dynamic> _$$AppUserPreferencesImplToJson(
+        _$AppUserPreferencesImpl instance,) =>
     <String, dynamic>{
       'theme': instance.theme,
       'notify_on_attempt': instance.notifyOnAttempt,

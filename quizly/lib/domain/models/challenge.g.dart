@@ -6,7 +6,8 @@ part of 'challenge.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Challenge _$ChallengeFromJson(Map<String, dynamic> json) => _Challenge(
+_$ChallengeImpl _$$ChallengeImplFromJson(Map<String, dynamic> json) =>
+    _$ChallengeImpl(
       id: json['id'] as String,
       quizId: json['quiz_id'] as String,
       challengerAttemptId: json['challenger_attempt_id'] as String,
@@ -21,7 +22,7 @@ _Challenge _$ChallengeFromJson(Map<String, dynamic> json) => _Challenge(
           const [],
     );
 
-Map<String, dynamic> _$ChallengeToJson(_Challenge instance) =>
+Map<String, dynamic> _$$ChallengeImplToJson(_$ChallengeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'quiz_id': instance.quizId,

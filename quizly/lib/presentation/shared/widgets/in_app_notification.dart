@@ -43,7 +43,7 @@ class _InAppNotificationBannerState extends State<InAppNotificationBanner>
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeOut,
-    ));
+    ),);
     _controller.forward();
 
     _autoCloseTimer = Timer(const Duration(seconds: 4), () {

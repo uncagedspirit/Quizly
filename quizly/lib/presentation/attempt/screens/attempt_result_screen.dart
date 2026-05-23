@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
+import '../../../core/router/route_names.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/stat_pill.dart';
-import '../../shared/widgets/option_tile.dart';
 
 class AttemptResultScreen extends StatelessWidget {
   const AttemptResultScreen({super.key, required this.attemptId});
@@ -17,7 +18,7 @@ class AttemptResultScreen extends StatelessWidget {
     final colors = context.colors;
     const score = 8;
     const total = 10;
-    final pct = score / total;
+    const pct = score / total;
 
     Color bandColor;
     String emoji;
@@ -42,9 +43,11 @@ class AttemptResultScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _buildHeroBand(context, colors, bandColor, emoji, score, total),
+                    _buildHeroBand(
+                        context, colors, bandColor, emoji, score, total,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -79,7 +82,7 @@ class AttemptResultScreen extends StatelessWidget {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () => Navigator.popUntil(context, (r) => r.isFirst),
+              onTap: () => context.go(RouteNames.home),
               child: SizedBox(
                 width: 36,
                 height: 36,
@@ -92,7 +95,8 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeroBand(BuildContext context, QzTheme colors, Color bandColor, String emoji, int score, int total) {
+  Widget _buildHeroBand(BuildContext context, QzTheme colors, Color bandColor,
+      String emoji, int score, int total,) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: QzSpacing.s13),
@@ -121,8 +125,8 @@ class AttemptResultScreen extends StatelessWidget {
   }
 
   Widget _buildStatPills(BuildContext context, QzTheme colors) {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Expanded(child: StatPill(value: '8', label: 'Correct')),
         SizedBox(width: QzSpacing.s3),
         Expanded(child: StatPill(value: '2', label: 'Wrong')),
@@ -152,8 +156,9 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMiniRow(BuildContext context, QzTheme colors, int rank, String name, String score, String time,
-      {bool isMe = false}) {
+  Widget _buildMiniRow(BuildContext context, QzTheme colors, int rank,
+      String name, String score, String time,
+      {bool isMe = false,}) {
     final avatarColor = [
       const Color(0xFFF1A791),
       const Color(0xFFF9E761),
@@ -270,7 +275,8 @@ class AttemptResultScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQRow(BuildContext context, QzTheme colors, int index, String question, bool isCorrect) {
+  Widget _buildQRow(BuildContext context, QzTheme colors, int index,
+      String question, bool isCorrect,) {
     return Container(
       padding: const EdgeInsets.all(QzSpacing.s5),
       margin: const EdgeInsets.only(bottom: QzSpacing.s3),
@@ -310,7 +316,7 @@ class AttemptResultScreen extends StatelessWidget {
 
   Widget _buildBottomRow(BuildContext context, QzTheme colors) {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: QzSpacing.s9,
         right: QzSpacing.s9,
         top: QzSpacing.s5,

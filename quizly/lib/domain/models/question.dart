@@ -10,7 +10,8 @@ class Question with _$Question {
   const factory Question({
     required String id,
     required int index,
-    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson) required QuestionType type,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
+    required QuestionType type,
     required String text,
     required List<String> options,
     required int correctIndex,

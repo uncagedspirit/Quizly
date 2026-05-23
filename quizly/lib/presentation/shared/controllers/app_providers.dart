@@ -19,7 +19,6 @@ import '../../../data/repositories/attempt_repository.dart';
 import '../../../data/repositories/user_repository.dart';
 import '../../../data/repositories/notification_repository.dart';
 import '../../../data/repositories/deeplink_repository.dart';
-import '../../../core/constants/app_constants.dart';
 import 'hive_providers.dart';
 
 part 'app_providers.g.dart';
@@ -132,8 +131,7 @@ UserRepository userRepository(UserRepositoryRef ref) {
 }
 
 @Riverpod(keepAlive: true)
-NotificationRepository notificationRepository(
-    NotificationRepositoryRef ref) {
+NotificationRepository notificationRepository(NotificationRepositoryRef ref) {
   return NotificationRepository(ref.watch(fcmSourceProvider));
 }
 

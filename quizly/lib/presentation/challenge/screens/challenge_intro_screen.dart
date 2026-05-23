@@ -5,7 +5,6 @@ import '../../../core/theme/tokens.dart';
 import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/tag_chip.dart';
-import '../../shared/widgets/quiz_card.dart';
 
 class ChallengeIntroScreen extends StatelessWidget {
   const ChallengeIntroScreen({super.key, required this.challengeId});
@@ -27,9 +26,9 @@ class ChallengeIntroScreen extends StatelessWidget {
               const Spacer(),
               Column(
                 children: [
-                  Text(
+                  const Text(
                     '\u2694\uFE0F',
-                    style: const TextStyle(fontSize: 64),
+                    style: TextStyle(fontSize: 64),
                   ),
                   const SizedBox(height: QzSpacing.s7),
                   Text(
@@ -132,10 +131,10 @@ class ChallengeIntroScreen extends StatelessWidget {
             style: context.text.bodySm.copyWith(color: colors.ink2),
           ),
           const SizedBox(height: QzSpacing.s7),
-          Wrap(
+          const Wrap(
             spacing: QzSpacing.s3,
             runSpacing: QzSpacing.s3,
-            children: const [
+            children: [
               TagChip(label: '10 Questions'),
               TagChip(label: '60s per question'),
               TagChip(label: 'Created by Saakshi'),

@@ -83,7 +83,7 @@ class FirestoreAttemptSource {
           submittedAt: data['submittedAt'] != null
               ? (data['submittedAt'] as Timestamp).toDate()
               : DateTime.now(),
-        ));
+        ),);
       }
       return entries;
     });

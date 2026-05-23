@@ -18,7 +18,8 @@ class Attempt with _$Attempt {
     @Default([]) List<Answer> answers,
     required AttemptScore score,
     int? rank,
-    @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson) required AttemptStatus status,
+    @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+    required AttemptStatus status,
     required DateTime startedAt,
     DateTime? submittedAt,
     String? challengerAttemptId,

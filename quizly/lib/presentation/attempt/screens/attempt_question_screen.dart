@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
@@ -7,7 +8,6 @@ import '../../shared/widgets/tag_chip.dart';
 import '../../shared/widgets/option_tile.dart';
 import '../../shared/widgets/progress_segments.dart';
 import '../../shared/widgets/confirm_dialog.dart';
-import '../../../core/router/route_names.dart';
 
 class AttemptQuestionScreen extends StatefulWidget {
   const AttemptQuestionScreen({super.key, required this.attemptId});
@@ -22,8 +22,8 @@ class _AttemptQuestionScreenState extends State<AttemptQuestionScreen> {
   int _currentQuestion = 2;
   int _selectedOption = -1;
   final _totalQuestions = 10;
-  final _totalSeconds = 60;
-  int _secondsLeft = 42;
+
+  final int _secondsLeft = 42;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,8 @@ class _AttemptQuestionScreenState extends State<AttemptQuestionScreen> {
             _buildTopBar(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: QzSpacing.s9),
-              child: ProgressSegments(total: _totalQuestions, current: _currentQuestion),
+              child: ProgressSegments(
+                  total: _totalQuestions, current: _currentQuestion,),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -46,7 +47,7 @@ class _AttemptQuestionScreenState extends State<AttemptQuestionScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: QzSpacing.s5),
-                    TagChip(label: 'Science'),
+                    const TagChip(label: 'Science'),
                     const SizedBox(height: QzSpacing.s7),
                     Text(
                       'What is the chemical symbol for gold?',
@@ -157,7 +158,7 @@ class _AttemptQuestionScreenState extends State<AttemptQuestionScreen> {
     final isLast = _currentQuestion >= _totalQuestions - 1;
 
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: QzSpacing.s9,
         right: QzSpacing.s9,
         top: QzSpacing.s5,
@@ -179,7 +180,7 @@ class _AttemptQuestionScreenState extends State<AttemptQuestionScreen> {
         onPressed: _selectedOption >= 0
             ? () {
                 if (isLast) {
-                  Navigator.pushReplacementNamed(context, '/attempt/result/abc123');
+                  context.go('/attempt/result/abc123');
                 } else {
                   setState(() {
                     _currentQuestion++;

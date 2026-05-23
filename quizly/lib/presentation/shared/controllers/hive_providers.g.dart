@@ -6,11 +6,11 @@ part of 'hive_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appStateBoxHash() => r'1c89b9434ab2f7f7950e534bcdbe396034085c2f';
+String _$appStateBoxHash() => r'94f4d69750cec15e9a20406610926f8e97540d8a';
 
 /// See also [appStateBox].
 @ProviderFor(appStateBox)
-final appStateBoxProvider = Provider<Box>.internal(
+final appStateBoxProvider = Provider<Box<dynamic>>.internal(
   appStateBox,
   name: r'appStateBoxProvider',
   debugGetCreateSourceHash:
@@ -21,12 +21,12 @@ final appStateBoxProvider = Provider<Box>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AppStateBoxRef = ProviderRef<Box>;
-String _$guestAttemptsBoxHash() => r'603780b375529a637df7cea130c928e10f69af0f';
+typedef AppStateBoxRef = ProviderRef<Box<dynamic>>;
+String _$guestAttemptsBoxHash() => r'3fdaa41c978ca303783f238c0c85d5301239b6cc';
 
 /// See also [guestAttemptsBox].
 @ProviderFor(guestAttemptsBox)
-final guestAttemptsBoxProvider = Provider<Box>.internal(
+final guestAttemptsBoxProvider = Provider<Box<dynamic>>.internal(
   guestAttemptsBox,
   name: r'guestAttemptsBoxProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -38,12 +38,12 @@ final guestAttemptsBoxProvider = Provider<Box>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef GuestAttemptsBoxRef = ProviderRef<Box>;
-String _$quizCacheBoxHash() => r'0a2d83f2d30884c3dcb5c2360a79042a12b63605';
+typedef GuestAttemptsBoxRef = ProviderRef<Box<dynamic>>;
+String _$quizCacheBoxHash() => r'564cc0697c7598bd1c948d75db2b54ef1b5a5879';
 
 /// See also [quizCacheBox].
 @ProviderFor(quizCacheBox)
-final quizCacheBoxProvider = Provider<Box>.internal(
+final quizCacheBoxProvider = Provider<Box<dynamic>>.internal(
   quizCacheBox,
   name: r'quizCacheBoxProvider',
   debugGetCreateSourceHash:
@@ -54,12 +54,12 @@ final quizCacheBoxProvider = Provider<Box>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef QuizCacheBoxRef = ProviderRef<Box>;
-String _$quizDraftsBoxHash() => r'50cbc26fb11e935c8fcf28ee42818c130d8929ba';
+typedef QuizCacheBoxRef = ProviderRef<Box<dynamic>>;
+String _$quizDraftsBoxHash() => r'39d48970c94e11d194b8a1ddda268a3031b46d1e';
 
 /// See also [quizDraftsBox].
 @ProviderFor(quizDraftsBox)
-final quizDraftsBoxProvider = Provider<Box>.internal(
+final quizDraftsBoxProvider = Provider<Box<dynamic>>.internal(
   quizDraftsBox,
   name: r'quizDraftsBoxProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -71,13 +71,13 @@ final quizDraftsBoxProvider = Provider<Box>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef QuizDraftsBoxRef = ProviderRef<Box>;
+typedef QuizDraftsBoxRef = ProviderRef<Box<dynamic>>;
 String _$pendingSubmissionsBoxHash() =>
-    r'f6757a9b4012720eaa24263fadadc09031603104';
+    r'de6637ea9baae3c7a2783955b58fc4358d015e46';
 
 /// See also [pendingSubmissionsBox].
 @ProviderFor(pendingSubmissionsBox)
-final pendingSubmissionsBoxProvider = Provider<Box>.internal(
+final pendingSubmissionsBoxProvider = Provider<Box<dynamic>>.internal(
   pendingSubmissionsBox,
   name: r'pendingSubmissionsBoxProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -89,6 +89,6 @@ final pendingSubmissionsBoxProvider = Provider<Box>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef PendingSubmissionsBoxRef = ProviderRef<Box>;
+typedef PendingSubmissionsBoxRef = ProviderRef<Box<dynamic>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

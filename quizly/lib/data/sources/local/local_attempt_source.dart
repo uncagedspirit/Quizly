@@ -7,8 +7,8 @@ import '../../../domain/models/attempt.dart';
 class LocalAttemptSource {
   LocalAttemptSource(this._guestAttemptsBox, this._pendingBox);
 
-  final Box _guestAttemptsBox;
-  final Box _pendingBox;
+  final Box<dynamic> _guestAttemptsBox;
+  final Box<dynamic> _pendingBox;
 
   Future<void> saveGuestAttempt(Attempt attempt) async {
     await _guestAttemptsBox.put(attempt.id, jsonEncode(attempt.toJson()));

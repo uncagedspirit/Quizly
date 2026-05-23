@@ -54,7 +54,7 @@ class TimerPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final pct = totalSeconds > 0 ? seconds / totalSeconds : 0.0;
+    // ignore: unused_local_variable
     final isUrgent = seconds <= 5;
 
     return Container(

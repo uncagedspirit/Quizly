@@ -6,8 +6,9 @@ part of 'leaderboard_entry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_LeaderboardEntry _$LeaderboardEntryFromJson(Map<String, dynamic> json) =>
-    _LeaderboardEntry(
+_$LeaderboardEntryImpl _$$LeaderboardEntryImplFromJson(
+        Map<String, dynamic> json,) =>
+    _$LeaderboardEntryImpl(
       attemptId: json['attempt_id'] as String,
       attempterName: json['attempter_name'] as String,
       score: (json['score'] as num).toInt(),
@@ -18,7 +19,8 @@ _LeaderboardEntry _$LeaderboardEntryFromJson(Map<String, dynamic> json) =>
       isCurrentUser: json['is_current_user'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$LeaderboardEntryToJson(_LeaderboardEntry instance) =>
+Map<String, dynamic> _$$LeaderboardEntryImplToJson(
+        _$LeaderboardEntryImpl instance,) =>
     <String, dynamic>{
       'attempt_id': instance.attemptId,
       'attempter_name': instance.attempterName,

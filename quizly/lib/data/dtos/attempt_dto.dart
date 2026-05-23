@@ -68,7 +68,7 @@ class AttemptDto {
               selectedIndex: a['selectedIndex'] as int?,
               isCorrect: a['isCorrect'] as bool? ?? false,
               timeTakenMs: a['timeTakenMs'] as int? ?? 0,
-            ))
+            ),)
         .toList();
   }
 
@@ -79,7 +79,7 @@ class AttemptDto {
               'selectedIndex': a.selectedIndex,
               'isCorrect': a.isCorrect,
               'timeTakenMs': a.timeTakenMs,
-            })
+            },)
         .toList();
   }
 }

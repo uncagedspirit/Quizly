@@ -90,7 +90,7 @@ class QuizDetailScreen extends StatelessWidget {
   }
 
   Widget _buildCodeShareRow(
-      BuildContext context, QzTheme colors, String code) {
+      BuildContext context, QzTheme colors, String code,) {
     return Row(
       children: [
         Expanded(
@@ -244,7 +244,7 @@ class QuizDetailScreen extends StatelessWidget {
   }
 
   Widget _buildLeaderRow(BuildContext context, QzTheme colors, int rank,
-      String name, String score, String time) {
+      String name, String score, String time,) {
     final avatarColor = const [
       Color(0xFFF1A791),
       Color(0xFFF9E761),
@@ -430,9 +430,9 @@ class QuizDetailScreen extends StatelessWidget {
           child: Column(
             children: [
               _buildDangerAction(context, colors, 'Edit Quiz',
-                  Icons.edit_outlined, () {}),
+                  Icons.edit_outlined, () {},),
               _buildDangerAction(context, colors, 'Close Quiz',
-                  Icons.lock_outline, () {}),
+                  Icons.lock_outline, () {},),
               _buildDangerAction(context, colors, 'Delete Quiz',
                   Icons.delete_outline, () {
                 showConfirmDialog(
@@ -451,7 +451,7 @@ class QuizDetailScreen extends StatelessWidget {
   }
 
   Widget _buildDangerAction(BuildContext context, QzTheme colors,
-      String label, IconData icon, VoidCallback onTap) {
+      String label, IconData icon, VoidCallback onTap,) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

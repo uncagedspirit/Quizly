@@ -21,7 +21,8 @@ class Quiz with _$Quiz {
     required int questionCount,
     required QuizSettings settings,
     required QuizStats stats,
-    @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson) required QuizStatus status,
+    @JsonKey(fromJson: _statusFromJson, toJson: _statusToJson)
+    required QuizStatus status,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Quiz;
@@ -35,7 +36,9 @@ class QuizSettings with _$QuizSettings {
     @Default(false) bool allowAnonymous,
     int? perQuestionTimerSec,
     @TimestampConverter() DateTime? deadlineAt,
-    @JsonKey(fromJson: _revealFromJson, toJson: _revealToJson) @Default(RevealMode.atEnd) RevealMode revealMode,
+    @JsonKey(fromJson: _revealFromJson, toJson: _revealToJson)
+    @Default(RevealMode.atEnd)
+    RevealMode revealMode,
   }) = _QuizSettings;
 
   factory QuizSettings.fromJson(Map<String, dynamic> json) =>

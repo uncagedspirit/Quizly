@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
@@ -32,13 +33,13 @@ class LoginScreen extends StatelessWidget {
                 style: context.text.bodyMd.copyWith(color: colors.ink3),
               ),
               const SizedBox(height: QzSpacing.s11),
-              AppTextField(
+              const AppTextField(
                 label: 'Email',
                 hint: 'Enter your email',
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: QzSpacing.s5),
-              AppTextField(
+              const AppTextField(
                 label: 'Password',
                 hint: 'Enter your password',
                 obscureText: true,
@@ -59,12 +60,12 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: QzSpacing.s7),
               Center(
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, RouteNames.signup),
+                  onTap: () => context.push(RouteNames.signup),
                   child: RichText(
                     text: TextSpan(
                       style: context.text.bodyMd.copyWith(color: colors.ink2),
                       children: [
-                        const TextSpan(text: "New here? "),
+                        const TextSpan(text: 'New here?'),
                         TextSpan(
                           text: 'Create account',
                           style: context.text.bodyMd.copyWith(
@@ -80,7 +81,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: QzSpacing.s9),
               Center(
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, RouteNames.home),
+                  onTap: () => context.go(RouteNames.home),
                   child: Text(
                     'Continue without account',
                     style: context.text.bodyMd.copyWith(color: colors.brand),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../presentation/shared/controllers/auth_controller.dart';
-import '../../presentation/shared/controllers/theme_controller.dart';
 import '../../presentation/auth/screens/splash_screen.dart';
 import '../../presentation/auth/screens/login_screen.dart';
 import '../../presentation/auth/screens/signup_screen.dart';
@@ -175,7 +174,7 @@ GoRouter appRouter(AppRouterRef ref) {
 }
 
 Widget _slideTransition(BuildContext context, Animation<double> animation,
-    Animation<double> secondaryAnimation, Widget child) {
+    Animation<double> secondaryAnimation, Widget child,) {
   return SlideTransition(
     position: Tween<Offset>(
       begin: const Offset(1, 0),
@@ -183,13 +182,13 @@ Widget _slideTransition(BuildContext context, Animation<double> animation,
     ).animate(CurvedAnimation(
       parent: animation,
       curve: const Cubic(0, 0, 0.2, 1),
-    )),
+    ),),
     child: child,
   );
 }
 
 Widget _fadeTransition(BuildContext context, Animation<double> animation,
-    Animation<double> secondaryAnimation, Widget child) {
+    Animation<double> secondaryAnimation, Widget child,) {
   return FadeTransition(
     opacity: CurvedAnimation(
       parent: animation,
@@ -200,7 +199,7 @@ Widget _fadeTransition(BuildContext context, Animation<double> animation,
 }
 
 Widget _fadeUpTransition(BuildContext context, Animation<double> animation,
-    Animation<double> secondaryAnimation, Widget child) {
+    Animation<double> secondaryAnimation, Widget child,) {
   return SlideTransition(
     position: Tween<Offset>(
       begin: const Offset(0, 0.05),
@@ -208,7 +207,7 @@ Widget _fadeUpTransition(BuildContext context, Animation<double> animation,
     ).animate(CurvedAnimation(
       parent: animation,
       curve: Curves.easeOut,
-    )),
+    ),),
     child: FadeTransition(
       opacity: animation,
       child: child,

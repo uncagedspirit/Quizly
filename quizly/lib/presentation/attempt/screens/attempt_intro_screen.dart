@@ -86,9 +86,9 @@ class AttemptIntroScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             '\u{1F3B2}',
-            style: const TextStyle(fontSize: 40),
+            style: TextStyle(fontSize: 40),
           ),
           const SizedBox(height: QzSpacing.s5),
           Text(
@@ -101,12 +101,12 @@ class AttemptIntroScreen extends StatelessWidget {
             style: context.text.bodyMd.copyWith(color: colors.ink2),
           ),
           const SizedBox(height: QzSpacing.s7),
-          Row(
+          const Row(
             children: [
               TagChip(label: '10 Questions'),
-              const SizedBox(width: QzSpacing.s3),
+              SizedBox(width: QzSpacing.s3),
               TagChip(label: '60s per question'),
-              const SizedBox(width: QzSpacing.s3),
+              SizedBox(width: QzSpacing.s3),
               TagChip(label: 'MCQ'),
             ],
           ),
@@ -154,7 +154,7 @@ class AttemptIntroScreen extends StatelessWidget {
           style: context.text.labelMd.copyWith(color: colors.ink2),
         ),
         const SizedBox(height: QzSpacing.s3),
-        AppTextField(
+        const AppTextField(
           hint: 'Enter your name',
           maxLength: 30,
         ),
@@ -177,7 +177,7 @@ class AttemptIntroScreen extends StatelessWidget {
 
   Widget _buildBottomButton(BuildContext context, QzTheme colors) {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: QzSpacing.s9,
         right: QzSpacing.s9,
         top: QzSpacing.s5,

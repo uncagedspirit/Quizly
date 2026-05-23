@@ -13,13 +13,13 @@ class HiveInit {
   static Future<void> init() async {
     await Hive.initFlutter();
 
-    await Hive.openBox(appStateBox);
-    await Hive.openBox(guestAttemptsBox);
-    await Hive.openBox(quizCacheBox);
-    await Hive.openBox(quizDraftsBox);
-    await Hive.openBox(pendingSubmissionsBox);
+    await Hive.openBox<dynamic>(appStateBox);
+    await Hive.openBox<dynamic>(guestAttemptsBox);
+    await Hive.openBox<dynamic>(quizCacheBox);
+    await Hive.openBox<dynamic>(quizDraftsBox);
+    await Hive.openBox<dynamic>(pendingSubmissionsBox);
 
-    final appState = Hive.box(appStateBox);
+    final appState = Hive.box<dynamic>(appStateBox);
     if (!appState.containsKey('device_id')) {
       await appState.put('device_id', const Uuid().v4());
     }

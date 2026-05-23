@@ -9,11 +9,13 @@ import '../../../domain/models/question.dart';
 class LocalQuizSource {
   LocalQuizSource(this._quizCacheBox);
 
-  final Box _quizCacheBox;
+  final Box<dynamic> _quizCacheBox;
 
   Future<void> cacheQuiz(Quiz quiz, List<Question> questions) async {
     final data = {
-      'quiz': Map<String, dynamic>.from(QuizDto.toFirestore(quiz)..remove('createdAt')..remove('updatedAt')),
+      'quiz': Map<String, dynamic>.from(QuizDto.toFirestore(quiz)
+        ..remove('createdAt')
+        ..remove('updatedAt'),),
       'questions': questions.map(QuizDto.questionToFirestore).toList(),
     };
     await _quizCacheBox.put(quiz.id, jsonEncode(data));

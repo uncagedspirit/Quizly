@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
 import '../../shared/widgets/app_text_field.dart';
 import '../../shared/widgets/primary_button.dart';
-import '../../../core/router/route_names.dart';
-
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
@@ -32,18 +31,18 @@ class SignupScreen extends StatelessWidget {
                 style: context.text.bodyMd.copyWith(color: colors.ink3),
               ),
               const SizedBox(height: QzSpacing.s11),
-              AppTextField(
+              const AppTextField(
                 label: 'Display Name',
                 hint: 'Your name',
               ),
               const SizedBox(height: QzSpacing.s5),
-              AppTextField(
+              const AppTextField(
                 label: 'Email',
                 hint: 'Enter your email',
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: QzSpacing.s5),
-              AppTextField(
+              const AppTextField(
                 label: 'Password',
                 hint: 'Min. 8 characters',
                 obscureText: true,
@@ -53,7 +52,7 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: QzSpacing.s7),
               Center(
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, RouteNames.login),
+                  onTap: () => context.pop(),
                   child: RichText(
                     text: TextSpan(
                       style: context.text.bodyMd.copyWith(color: colors.ink2),

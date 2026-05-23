@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
+import '../../../core/router/route_names.dart';
 import '../../../core/theme/tokens.dart';
 import '../../../core/theme/qz_theme.dart';
 import '../../shared/widgets/primary_button.dart';
@@ -28,9 +30,9 @@ class QuizPublishedScreen extends StatelessWidget {
               const Spacer(),
               Column(
                 children: [
-                  Text(
+                  const Text(
                     '\u{1F389}',
-                    style: const TextStyle(fontSize: 64),
+                    style: TextStyle(fontSize: 64),
                   ),
                   const SizedBox(height: QzSpacing.s7),
                   Text(
@@ -106,7 +108,7 @@ class QuizPublishedScreen extends StatelessWidget {
               const SizedBox(height: QzSpacing.s5),
               SecondaryButton(
                 label: 'Go to Dashboard',
-                onPressed: () => Navigator.popUntil(context, (r) => r.isFirst),
+                onPressed: () => context.go(RouteNames.home),
               ),
               const SizedBox(height: QzSpacing.s9),
             ],

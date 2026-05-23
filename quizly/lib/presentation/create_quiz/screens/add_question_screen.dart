@@ -258,7 +258,7 @@ class _AddQuestionScreenState extends State<AddQuestionScreen> {
     final canSave = _questionController.text.isNotEmpty;
 
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: QzSpacing.s9,
         right: QzSpacing.s9,
         top: QzSpacing.s5,

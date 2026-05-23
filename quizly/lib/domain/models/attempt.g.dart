@@ -6,7 +6,8 @@ part of 'attempt.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Attempt _$AttemptFromJson(Map<String, dynamic> json) => _Attempt(
+_$AttemptImpl _$$AttemptImplFromJson(Map<String, dynamic> json) =>
+    _$AttemptImpl(
       id: json['id'] as String,
       quizId: json['quiz_id'] as String,
       quizCode: json['quiz_code'] as String,
@@ -28,7 +29,8 @@ _Attempt _$AttemptFromJson(Map<String, dynamic> json) => _Attempt(
       challengerAttemptId: json['challenger_attempt_id'] as String?,
     );
 
-Map<String, dynamic> _$AttemptToJson(_Attempt instance) => <String, dynamic>{
+Map<String, dynamic> _$$AttemptImplToJson(_$AttemptImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'quiz_id': instance.quizId,
       'quiz_code': instance.quizCode,
@@ -45,29 +47,30 @@ Map<String, dynamic> _$AttemptToJson(_Attempt instance) => <String, dynamic>{
       'challenger_attempt_id': instance.challengerAttemptId,
     };
 
-_Answer _$AnswerFromJson(Map<String, dynamic> json) => _Answer(
+_$AnswerImpl _$$AnswerImplFromJson(Map<String, dynamic> json) => _$AnswerImpl(
       questionId: json['question_id'] as String,
       selectedIndex: (json['selected_index'] as num?)?.toInt(),
       isCorrect: json['is_correct'] as bool? ?? false,
       timeTakenMs: (json['time_taken_ms'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$AnswerToJson(_Answer instance) => <String, dynamic>{
+Map<String, dynamic> _$$AnswerImplToJson(_$AnswerImpl instance) =>
+    <String, dynamic>{
       'question_id': instance.questionId,
       'selected_index': instance.selectedIndex,
       'is_correct': instance.isCorrect,
       'time_taken_ms': instance.timeTakenMs,
     };
 
-_AttemptScore _$AttemptScoreFromJson(Map<String, dynamic> json) =>
-    _AttemptScore(
+_$AttemptScoreImpl _$$AttemptScoreImplFromJson(Map<String, dynamic> json) =>
+    _$AttemptScoreImpl(
       correct: (json['correct'] as num).toInt(),
       total: (json['total'] as num).toInt(),
       percentage: (json['percentage'] as num).toInt(),
       totalTimeMs: (json['totalTimeMs'] as num).toInt(),
     );
 
-Map<String, dynamic> _$AttemptScoreToJson(_AttemptScore instance) =>
+Map<String, dynamic> _$$AttemptScoreImplToJson(_$AttemptScoreImpl instance) =>
     <String, dynamic>{
       'correct': instance.correct,
       'total': instance.total,

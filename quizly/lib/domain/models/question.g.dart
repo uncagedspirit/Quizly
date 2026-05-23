@@ -6,7 +6,8 @@ part of 'question.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Question _$QuestionFromJson(Map<String, dynamic> json) => _Question(
+_$QuestionImpl _$$QuestionImplFromJson(Map<String, dynamic> json) =>
+    _$QuestionImpl(
       id: json['id'] as String,
       index: (json['index'] as num).toInt(),
       type: _typeFromJson(json['type'] as String),
@@ -17,7 +18,8 @@ _Question _$QuestionFromJson(Map<String, dynamic> json) => _Question(
       explanation: json['explanation'] as String?,
     );
 
-Map<String, dynamic> _$QuestionToJson(_Question instance) => <String, dynamic>{
+Map<String, dynamic> _$$QuestionImplToJson(_$QuestionImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'index': instance.index,
       'type': _typeToJson(instance.type),

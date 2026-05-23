@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../data/repositories/attempt_repository.dart';
-import '../../../domain/models/attempt.dart';
-
 class MigrateGuestAttemptsUseCase {
-  MigrateGuestAttemptsUseCase(this._attemptRepository, this._firestore);
+  MigrateGuestAttemptsUseCase(this._firestore);
 
-  final AttemptRepository _attemptRepository;
   final FirebaseFirestore _firestore;
 
   Future<MigrationResult> execute({
@@ -20,7 +16,7 @@ class MigrateGuestAttemptsUseCase {
         .get();
 
     if (guestAttempts.docs.isEmpty) {
-      return MigrationResult(migratedCount: 0);
+      return const MigrationResult(migratedCount: 0);
     }
 
     final batch = _firestore.batch();

@@ -6,7 +6,7 @@ part of 'quiz.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Quiz _$QuizFromJson(Map<String, dynamic> json) => _Quiz(
+_$QuizImpl _$$QuizImplFromJson(Map<String, dynamic> json) => _$QuizImpl(
       id: json['id'] as String,
       code: json['code'] as String,
       creatorId: json['creator_id'] as String,
@@ -23,7 +23,8 @@ _Quiz _$QuizFromJson(Map<String, dynamic> json) => _Quiz(
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$QuizToJson(_Quiz instance) => <String, dynamic>{
+Map<String, dynamic> _$$QuizImplToJson(_$QuizImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'code': instance.code,
       'creator_id': instance.creatorId,
@@ -40,8 +41,8 @@ Map<String, dynamic> _$QuizToJson(_Quiz instance) => <String, dynamic>{
       'updated_at': instance.updatedAt.toIso8601String(),
     };
 
-_QuizSettings _$QuizSettingsFromJson(Map<String, dynamic> json) =>
-    _QuizSettings(
+_$QuizSettingsImpl _$$QuizSettingsImplFromJson(Map<String, dynamic> json) =>
+    _$QuizSettingsImpl(
       allowAnonymous: json['allow_anonymous'] as bool? ?? false,
       perQuestionTimerSec: (json['per_question_timer_sec'] as num?)?.toInt(),
       deadlineAt: const TimestampConverter().fromJson(json['deadline_at']),
@@ -50,7 +51,7 @@ _QuizSettings _$QuizSettingsFromJson(Map<String, dynamic> json) =>
           : _revealFromJson(json['reveal_mode'] as String),
     );
 
-Map<String, dynamic> _$QuizSettingsToJson(_QuizSettings instance) =>
+Map<String, dynamic> _$$QuizSettingsImplToJson(_$QuizSettingsImpl instance) =>
     <String, dynamic>{
       'allow_anonymous': instance.allowAnonymous,
       'per_question_timer_sec': instance.perQuestionTimerSec,
@@ -58,13 +59,14 @@ Map<String, dynamic> _$QuizSettingsToJson(_QuizSettings instance) =>
       'reveal_mode': _revealToJson(instance.revealMode),
     };
 
-_QuizStats _$QuizStatsFromJson(Map<String, dynamic> json) => _QuizStats(
+_$QuizStatsImpl _$$QuizStatsImplFromJson(Map<String, dynamic> json) =>
+    _$QuizStatsImpl(
       attemptCount: (json['attempt_count'] as num?)?.toInt() ?? 0,
       averageScore: (json['average_score'] as num?)?.toDouble() ?? 0.0,
       hardestQuestionIndex: (json['hardest_question_index'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$QuizStatsToJson(_QuizStats instance) =>
+Map<String, dynamic> _$$QuizStatsImplToJson(_$QuizStatsImpl instance) =>
     <String, dynamic>{
       'attempt_count': instance.attemptCount,
       'average_score': instance.averageScore,

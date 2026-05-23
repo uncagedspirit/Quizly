@@ -121,9 +121,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (_tabIndex == 0)
-                        Text(
+                        const Text(
                           '🌱',
-                          style: const TextStyle(fontSize: 56),
+                          style: TextStyle(fontSize: 56),
                         ),
                       const SizedBox(height: QzSpacing.s5),
                       Text(

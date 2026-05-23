@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/theme/tokens.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../../shared/widgets/app_text_field.dart';
-import '../../shared/widgets/tag_chip.dart';
 
 class CreateQuizScreen extends StatefulWidget {
   const CreateQuizScreen({super.key});
@@ -22,7 +22,13 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
 
   final _revealModes = ['After Submit', 'After Quiz Closes', 'Never'];
   final _timerOptions = ['No timer', '30s / Q', '60s / Q', '120s / Q'];
-  final _deadlineOptions = ['No deadline', '1 hour', '6 hours', '24 hours', '3 days'];
+  final _deadlineOptions = [
+    'No deadline',
+    '1 hour',
+    '6 hours',
+    '24 hours',
+    '3 days',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +47,13 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: QzSpacing.s9),
-                    AppTextField(
+                    const AppTextField(
                       label: 'Quiz Title',
                       hint: 'Enter a catchy title',
                       maxLength: 80,
                     ),
                     const SizedBox(height: QzSpacing.s7),
-                    AppTextField(
+                    const AppTextField(
                       label: 'Description',
                       hint: 'What is this quiz about?',
                       maxLines: 3,
@@ -130,13 +136,13 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               _buildToggleRow('Anonymous Mode'),
               const SizedBox(height: QzSpacing.s5),
               _buildChipPicker('Reveal Mode', _revealModes, _revealMode,
-                  (i) => setState(() => _revealMode = i)),
+                  (i) => setState(() => _revealMode = i),),
               const SizedBox(height: QzSpacing.s5),
               _buildChipPicker('Timer', _timerOptions, _timerIndex,
-                  (i) => setState(() => _timerIndex = i)),
+                  (i) => setState(() => _timerIndex = i),),
               const SizedBox(height: QzSpacing.s5),
               _buildChipPicker('Deadline', _deadlineOptions, _deadlineIndex,
-                  (i) => setState(() => _deadlineIndex = i)),
+                  (i) => setState(() => _deadlineIndex = i),),
             ],
           ),
         ),
@@ -162,9 +168,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
               borderRadius: BorderRadius.circular(13),
             ),
             child: AnimatedAlign(
-              alignment: _isAnonymous
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+              alignment:
+                  _isAnonymous ? Alignment.centerRight : Alignment.centerLeft,
               duration: QzDur.fast,
               child: Container(
                 width: 20,
@@ -181,8 +186,8 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     );
   }
 
-  Widget _buildChipPicker(
-      String label, List<String> options, int selected, ValueChanged<int> onSelect) {
+  Widget _buildChipPicker(String label, List<String> options, int selected,
+      ValueChanged<int> onSelect,) {
     final colors = context.colors;
 
     return Column(
@@ -337,7 +342,7 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
     final colors = context.colors;
 
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: QzSpacing.s9,
         right: QzSpacing.s9,
         top: QzSpacing.s5,
@@ -354,12 +359,14 @@ class _CreateQuizScreenState extends State<CreateQuizScreen> {
           ),
         ],
       ),
-      child: PrimaryButton(label: 'Publish & Get Code', onPressed: _questions.isNotEmpty ? () {} : null),
+      child: PrimaryButton(
+          label: 'Publish & Get Code',
+          onPressed: _questions.isNotEmpty ? () {} : null,),
     );
   }
 
   void _onAddQuestion() {
-    Navigator.pushNamed(context, '/quiz/create/question').then((result) {
+    context.push<String>('/quiz/create/question').then((result) {
       if (result != null && mounted) {
         setState(() => _questions.add(result.toString()));
       }
